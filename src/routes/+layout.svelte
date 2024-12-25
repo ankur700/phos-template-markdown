@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Footer from '$lib/components/footer.svelte'
 	import Header from '$lib/components/header.svelte'
-
+	import PageTransition from './transition.svelte'
 	import 'open-props/style'
 	import 'open-props/normalize'
 	import 'open-props/buttons'
@@ -14,7 +14,9 @@
 	<Header />
 
 	<main>
-		{@render children?.()}
+		<PageTransition url={data.url}>
+			{@render children?.()}
+		</PageTransition>
 	</main>
 
 	<Footer />
