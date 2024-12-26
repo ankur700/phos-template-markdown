@@ -1,11 +1,11 @@
 <script lang="ts">
-  import * as config from '$lib/config'
+  import { SITE } from '$lib/config.js'
 
   let { data } = $props()
 </script>
 
 <svelte:head>
-  <title>{config.title + " Tags"}</title>
+  <title>{SITE.title + " Tags"}</title>
 </svelte:head>
 
 <section>

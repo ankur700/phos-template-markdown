@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils'
-	import * as config from '$lib/config'
+	import { SITE } from '$lib/config.ts'
 
 	let { data } = $props()
 </script>
 
 <svelte:head>
-	<title>{config.title + " Posts"}</title>
+	<title>{SITE.title + " Posts"}</title>
 </svelte:head>
 
 <section>
@@ -14,7 +14,7 @@
 		{#each data.posts as post}
 			<li class="post">
 				<a href={`/posts/${post.slug}`} class="title">{post.title}</a>
-				<p class="date">{formatDate(post.date)}</p>
+				<p class="date">{post.pubDatetime}</p>
 				<p class="description">{post.description}</p>
 			</li>
 		{/each}

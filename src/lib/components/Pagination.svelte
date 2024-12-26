@@ -1,0 +1,59 @@
+<script lang="ts">
+import LinkButton from "./LinkButton.svelte";
+
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  prevUrl: string;
+  nextUrl: string;
+}
+
+const { currentPage, totalPages, prevUrl, nextUrl }:Props = $props();
+
+const prev = currentPage > 1 ? "" : "disabled";
+const next = currentPage < totalPages ? "" : "disabled";
+</script>
+
+
+{#if totalPages > 1}
+
+    <nav class="pagination-wrapper" aria-label="Pagination">
+      <LinkButton
+        disabled={prev === "disabled"}
+        href={prevUrl}
+        title="Previous"
+        className={`mr-4 select-none ${prev}`}
+        ariaLabel="Previous"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class={`${prev}-svg`}>
+          <path d="M12.707 17.293 8.414 13H18v-2H8.414l4.293-4.293-1.414-1.414L4.586 12l6.707 6.707z" />
+        </svg>
+        Prev
+      </LinkButton>
+      {currentPage} / {totalPages}
+      <LinkButton
+        disabled={next === "disabled"}
+        href={nextUrl}
+        title="Previous"
+        className={`ml-4 select-none ${next}`}
+        ariaLabel="Next"
+      >
+        Next
+        <svg xmlns="http://www.w3.org/2000/svg" class={`${next}-svg`}>
+          <path d="m11.293 17.293 1.414 1.414L19.414 12l-6.707-6.707-1.414 1.414L15.586 11H6v2h9.586z" />
+        </svg>
+      </LinkButton>
+    </nav>
+  {/if}
+
+<style>
+  .pagination-wrapper {
+    @apply mb-8 mt-auto flex justify-center;
+  }
+  .disabled {
+    @apply pointer-events-none select-none opacity-50 hover:text-skin-base group-hover:fill-skin-base;
+  }
+  .disabled-svg {
+    @apply group-hover:!fill-skin-base;
+  }
+</style>

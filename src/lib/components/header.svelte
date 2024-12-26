@@ -1,11 +1,11 @@
 <script lang="ts">
-	import * as config from '$lib/config'
+	import { SITE } from '$lib/config'
 	import Toggle from '$lib/components/toggle.svelte'
 </script>
 
 <nav>
 	<a href="/" class="title">
-		<b>{config.title}</b>
+		<b>{SITE.title}</b>
 	</a>
 
 	<ul class="links">

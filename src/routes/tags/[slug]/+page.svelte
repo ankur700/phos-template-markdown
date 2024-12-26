@@ -1,13 +1,13 @@
 <script lang="ts">
 	import { formatDate } from '$lib/utils'
-	import * as config from '$lib/config'
+	import { SITE } from '$lib/config'
   import type { Post } from '$lib/types'
 
 	export let data: { posts: Post[] }
 </script>
 
 <svelte:head>
-	<title>{config.title + " Tags"}</title>
+	<title>{SITE.title + " Tags"}</title>
 </svelte:head>
 
 <section>
