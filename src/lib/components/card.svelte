@@ -1,28 +1,40 @@
 <script lang="ts">
-import Datetime from "./dateTime.svelte";
-import Heading from "./heading.svelte";
-import type { Post } from "$lib/types";
+	import { formatDate } from '$lib/utils';
+	import Datetime from './dateTime.svelte';
+	import Heading from './heading.svelte';
+	import type { Post } from '$lib/types';
 
-interface Props {
-    href?: string;
-    post: Post;
-    secHeading?: boolean;
-  }
+	interface Props {
+		href?: string;
+		post: Post;
+		showDate?: boolean;
+		secHeading?: boolean;
+	}
 
-let { href, post, secHeading = true }: Props = $props();
-const { title, pubDatetime, modDatetime, description } = post;
-
+	let { href, post, secHeading = true, showDate = false }: Props = $props();
+	const { title, pubDatetime, modDatetime, description } = post;
 </script>
 
-    <li class="my-6">
-      <a
-        href={href}
-        class="inline-block text-lg font-medium text-skin-accent decoration-dashed underline-offset-4 focus-visible:no-underline focus-visible:underline-offset-0"
-      >
-      <Heading as={secHeading ? "h2" : "h3"} className="text-lg font-medium decoration-dashed hover:underline" text={title} />
+<article class="card post">
+	<Heading as={secHeading ? 'h2' : 'h3'} link={href} text={title} className="heading" />
 
-      </a>
-      <Datetime pubDatetime={pubDatetime} modDatetime={modDatetime} />
-      <p>{description}</p>
-    </li>
+	{#if showDate}
+		<Datetime {pubDatetime} {modDatetime} />
+	{/if}
+	<p class="description">{description}</p>
+</article>
 
+<style>
+	.post {
+		max-inline-size: var(--width-medium);
+
+		&:not(:last-child) {
+			border-bottom: 1px solid var(--border);
+			padding-bottom: var(--size-7);
+		}
+
+		.description {
+			margin-top: var(--size-1);
+		}
+	}
+</style>

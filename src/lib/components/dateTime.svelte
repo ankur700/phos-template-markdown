@@ -1,21 +1,11 @@
 <script lang="ts">
 	import FormatedDateTime from '$lib/components/FormatedDateTime.svelte';
-	let { pubDatetime, modDatetime, readingTime = "", size = 'sm', className = '' } = $props();
+	import { CalendarDays } from 'lucide-svelte';
+	let { pubDatetime, modDatetime, readingTime = '', size = 'sm', className = '' } = $props();
 </script>
 
-<div class={`flex items-center space-x-2 opacity-80 ${className}`}>
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		class={`${
-			size === 'sm' ? 'scale-90' : 'scale-100'
-		} inline-block h-6 w-6 min-w-[1.375rem] fill-skin-base`}
-		aria-hidden="true"
-	>
-		<path d="M7 11h2v2H7zm0 4h2v2H7zm4-4h2v2h-2zm0 4h2v2h-2zm4-4h2v2h-2zm0 4h2v2h-2z"></path>
-		<path
-			d="M5 22h14c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2h-2V2h-2v2H9V2H7v2H5c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zM19 8l.001 12H5V8h14z"
-		></path>
-	</svg>
+<div class={`date ${className}`}>
+	<CalendarDays style="height: var(--size-4); height: var(--size-4);" />
 
 	{#if modDatetime}
 		<span class={`italic ${size === 'sm' ? 'text-sm' : 'text-base'}`}> Updated: </span>
@@ -26,5 +16,24 @@
 		<FormatedDateTime {pubDatetime} {modDatetime} />
 	</span>
 
-	<span class="pl-10"> {readingTime}</span>
+	<span class="reading-time"> {readingTime}</span>
 </div>
+
+<style>
+	.date {
+		display: flex;
+		padding: var(--size-2);
+		background-color: hsl(var(--color-background / 40%));
+		gap: var(--size-2);
+		color: var(--text-2);
+
+		span {
+			font-size: var(--size-fluid-1);
+		}
+
+		.reading-time {
+			padding-left: var(--size-2);
+		}
+
+	}
+</style>

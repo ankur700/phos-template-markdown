@@ -1,52 +1,21 @@
 <script lang="ts">
-	import { formatDate } from '$lib/utils'
-	import { SITE } from '$lib/config'
-  import type { Post } from '$lib/types'
+	import Card from '$lib/components/card.svelte'
+	import PageWrapper from '$lib/components/PageWrapper.svelte'
 
-	export let data: { posts: Post[] }
+	let { data } = $props();
 </script>
 
-<svelte:head>
-	<title>{SITE.title + " Tags"}</title>
-</svelte:head>
-
-<section>
-	<ul class="posts">
+<PageWrapper>
+	<div class="posts">
 		{#each data.posts as post}
-			<li class="post">
-				<a href={`/posts/${post.slug}`} class="title">{post.title}</a>
-				<p class="date">{formatDate(post.date)}</p>
-				<p class="description">{post.description}</p>
-			</li>
+			<Card {post} />
 		{/each}
-	</ul>
-</section>
+		</div>
+	</PageWrapper>
 
 <style>
 	.posts {
 		display: grid;
 		gap: var(--size-7);
-
-		.post {
-			max-inline-size: var(--size-content-3);
-
-			&:not(:last-child) {
-				border-bottom: 1px solid var(--border);
-				padding-bottom: var(--size-7);
-			}
-
-			.title {
-				font-size: var(--font-size-fluid-3);
-				text-transform: capitalize;
-			}
-
-			.date {
-				color: var(--text-2);
-			}
-
-			.description {
-				margin-top: var(--size-3);
-			}
-		}
 	}
 </style>

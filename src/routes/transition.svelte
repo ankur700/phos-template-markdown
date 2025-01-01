@@ -19,5 +19,12 @@
 <style>
 	.transition {
 		height: 100%;
+		max-inline-size: 1440px;
+		margin-inline: auto;
+		padding-inline: var(--size-7);
+
+		@media (min-width: 1440px) {
+			padding-inline: 0;
+		}
 	}
 </style>

@@ -1,7 +1,7 @@
 ---
-title: Second Post
-description: Second post.
-pubDatetime: 2024-04-04T05:06:31Z
+title: Example Post
+description: example post.
+pubDatetime: 2025-04-04T05:06:31Z
 author: Ankur Singh
 draft: false
 featured: false

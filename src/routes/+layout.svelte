@@ -2,69 +2,49 @@
 	import Footer from '$lib/components/footer.svelte';
 	import Header from '$lib/components/header.svelte';
 	import PageTransition from './transition.svelte';
-	import 'open-props/style'
-	import 'open-props/normalize'
-	import 'open-props/buttons'
+
+	import Main from '$lib/components/Main.svelte';
+
 	import '../base.css';
 	import { page } from '$app/state';
 	import { LOCALE, SITE } from '$lib/config';
 	const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
-	interface Props {
-		title?: string;
-		author?: string;
-		description?: string;
-		ogImage?: string;
-		canonicalURL?: string;
-		pubDatetime?: Date;
-		modDatetime?: Date | null;
-		scrollSmooth?: boolean;
-		children?: any;
-		data: any;
-	}
+	let pageTitle = $derived(
+		page.url.pathname.split('/').length > 2 ? null : page.url.pathname.split('/')[1]
+	);
+	let pageDescription = $derived(
+		page.url.pathname.replace('/', '') === 'posts'
+			? 'All the articles published in the blog.'
+			: page.url.pathname.replace('/', '') === 'tags'
+				? 'All the tags used in the blog.'
+				: page.url.pathname.replace('/', '') === 'search'
+					? 'Search for articles in the blog.'
+					: null
+	);
 
-	let {
-		children,
-		data,
-		title = SITE.title,
-		author = SITE.author,
-		description = SITE.desc,
-		ogImage = SITE.ogImage,
-		// canonicalURL = new URL(page.url.pathname).href,
-		pubDatetime,
-		modDatetime,
-		scrollSmooth = false
-	}: Props = $props();
+	let { children, data } = $props();
 </script>
 
 <svelte:head>
-	<!-- <link rel="canonical" href={canonicalURL} /> -->
+	<link rel="canonical" href={SITE.website} />
 
 	<!-- General Meta Tags -->
-	<title>{title}</title>
-	<meta name="title" content={title} />
-	<meta name="description" content={description} />
-	<meta name="author" content={author} />
-	<link rel="sitemap" href="/sitemap-index.xml" />
+	<title>{SITE.title}</title>
+	<meta name="title" content={SITE.title} />
+	<meta name="description" content={SITE.desc} />
+	<meta name="author" content={SITE.author} />
 
 	<!-- Open Graph / Facebook -->
-	<meta property="og:title" content={title} />
-	<meta property="og:description" content={description} />
-	<!-- <meta property="og:url" content={canonicalURL} /> -->
-
-	<!-- Article Published/Modified time -->
-	{#if pubDatetime}
-		<meta property="article:published_time" content={pubDatetime.toISOString()} />
-	{/if}
-	{#if modDatetime}
-		<meta property="article:modified_time" content={modDatetime.toISOString()} />
-	{/if}
+	<meta property="og:title" content={SITE.title} />
+	<meta property="og:description" content={SITE.desc} />
+	<meta property="og:url" content={SITE.website} />
 
 	<!-- Twitter -->
 	<meta property="twitter:card" content="summary_large_image" />
-	<!-- <meta property="twitter:url" content={canonicalURL} /> -->
-	<meta property="twitter:title" content={title} />
-	<meta property="twitter:description" content={description} />
+	<meta property="twitter:url" content={SITE.website} />
+	<meta property="twitter:title" content={SITE.title} />
+	<meta property="twitter:description" content={SITE.desc} />
 
 	<meta name="theme-color" content="" />
 
@@ -73,33 +53,13 @@
 	{/if}
 </svelte:head>
 
-<div class="layout">
-	<Header />
+<Header activeNav={page.url.pathname.replace('/', '')} />
 
-	<main>
-		<PageTransition url={data.url}>
-			{@render children?.()}
-		</PageTransition>
-	</main>
+<Main {pageTitle} {pageDescription}>
+	<PageTransition url={data.url}>
+		{@render children?.()}
+	</PageTransition>
+</Main>
 
-	<Footer />
-</div>
+<Footer />
 
-<style>
-	.layout {
-		height: 100%;
-		max-inline-size: 1440px;
-		display: grid;
-		grid-template-rows: auto 1fr auto;
-		margin-inline: auto;
-		padding-inline: var(--size-7);
-
-		@media (min-width: 1440px) {
-			padding-inline: 0;
-		}
-
-		main {
-			padding-block: var(--size-9);
-		}
-	}
-</style>

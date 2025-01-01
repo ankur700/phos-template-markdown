@@ -1,3 +1,7 @@
+@import 'open-props/style';
+@import 'open-props/colors-hsl';
+@import 'open-props/normalize';
+@import 'open-props/buttons';
 @import '@fontsource/atkinson-hyperlegible';
 @import '@fontsource/jetbrains-mono';
 
@@ -6,27 +10,31 @@ html {
 	--font-system-ui: 'Atkinson Hyperlegible', sans-serif;
 	--font-monospace-code: 'JetBrains Mono', monospace;
 
+	--width-full: 100vw;
+	--width-medium: 48rem;
+	--width-narrow: 30rem;
+
 	/* dark */
-	--brand-dark: var(--orange-3);
+	--brand-dark: var(--orange-8);
 	--text-1-dark: var(--gray-3);
 	--text-2-dark: var(--gray-5);
-	--surface-1-dark: var(--gray-12);
-	--surface-2-dark: var(--gray-11);
-	--surface-3-dark: var(--gray-10);
-	--surface-4-dark: var(--gray-9);
-	--background-dark: var(--gradient-8);
-	--border-dark: var(--gray-9);
+	--surface-1-dark: var(--stone-12);
+	--surface-2-dark: var(--stone-11);
+	--surface-3-dark: var(--stone-10);
+	--surface-4-dark: var(--stone-9);
+	--background-dark: var(--stone-11);
+	--border-dark: var(--stone-9);
 
 	/* light */
-	--brand-light: var(--orange-10);
+	--brand-light: var(--orange-9);
 	--text-1-light: var(--gray-8);
 	--text-2-light: var(--gray-7);
-	--surface-1-light: var(--gray-0);
-	--surface-2-light: var(--gray-1);
-	--surface-3-light: var(--gray-2);
-	--surface-4-light: var(--gray-3);
-	--background-light: none;
-	--border-light: var(--gray-4);
+	--surface-1-light: var(--stone-0);
+	--surface-2-light: var(--stone-1);
+	--surface-3-light: var(--stone-2);
+	--surface-4-light: var(--stone-3);
+	--background-light: var(--stone-1);
+	--border-light: var(--stone-4);
 }
 
 :root {
@@ -95,8 +103,12 @@ body {
 html {
 	color: var(--text-1);
 	accent-color: var(--link);
-	background-image: var(--background);
 	background-attachment: fixed;
+	background-color: var(--background);
+}
+
+body {
+	font-family: var(--font-system-ui);
 }
 
 img {
@@ -107,6 +119,19 @@ ul,
 ol {
 	list-style: none;
 	padding: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--brand);
+}
+
+a:visted {
+	color: inherit;
 }
 
 li {
@@ -140,6 +165,8 @@ li {
 			margin-top: var(--size-7);
 		}
 
+		margin-bottom: var(--size-4);
+
 		/* ignore paragraph tag around images */
 		&:has(img) {
 			display: contents;
@@ -166,5 +193,17 @@ li {
 		padding: var(--size-3);
 		border-radius: 8px;
 		tab-size: 2;
+		white-space: pre-wrap;
+		margin-bottom: var(--size-4);
 	}
+}
+
+.sr-only:not(:focus):not(:active) {
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
 }

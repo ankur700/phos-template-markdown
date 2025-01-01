@@ -8,8 +8,8 @@ export type Post = {
 	featured?: boolean;
 	cover: string;
 	ogImage?: string;
-	pubDatetime: Date;
-	modDatetime: Date;
+	pubDatetime: string;
+	modDatetime: string;
 	draft: boolean;
 	canonicalUrl: string;
 	readingTime: string;
@@ -17,7 +17,6 @@ export type Post = {
 	published: boolean;
 };
 
-export type Tags = { [key: string]: Post[] };
 
 export type Site = {
 	website: string;

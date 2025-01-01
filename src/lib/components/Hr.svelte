@@ -4,9 +4,18 @@ interface Props {
   ariaHidden?: boolean;
 }
 
-const { noPadding = false, ariaHidden = true } = $props();
+const { noPadding = true, ariaHidden = true } = $props();
 </script>
 
-<div class={`max-w-3xl mx-auto ${noPadding ? "px-0" : "px-4"}`}>
-  <hr class="border-skin-line" aria-hidden={ariaHidden} />
+<div style={`${noPadding ? "padding-inline: 0" : "padding-inline: var(--size-4)"}`}>
+  <hr aria-hidden={ariaHidden} />
 </div>
+
+<style>
+  hr {
+    border: 0;
+    border-top: 1px var(--color-border);
+    margin-inline: auto;
+    max-inline-size: var(--width-medium);
+  }
+</style>

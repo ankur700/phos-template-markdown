@@ -1,20 +1,49 @@
 <script lang="ts">
-  let { as = "h1", className = "", text = "" } = $props();
+	let { as = 'h1', className = '', text = '', link = null } = $props();
 </script>
 
-
-{#if as === "h1"}
-  <h1 class={className}>{text}</h1>
-{:else if as === "h2"}
-  <h2 class={className}>{text}</h2>
-{:else if as === "h3"}
-  <h3 class={className}>{text}</h3>
-{:else if as === "h4"}
-  <h4 class={className}>{text}</h4>
-{:else if as === "h5"}
-  <h5 class={className}>{text}</h5>
-{:else if as === "h6"}
-  <h6 class={className}>{text}</h6>
-{:else}
-  <p class={className}>{text}</p>
+{#if as === 'h2'}
+	<h2 class="title">
+		{#if link}
+			<a href={link}>{text}</a>
+		{:else}
+			{text}
+		{/if}
+	</h2>
+{:else if as === 'h3'}
+	<h3 class="title">
+		{#if link}
+			<a href={link}>{text}</a>
+		{:else}
+			{text}
+		{/if}
+	</h3>
 {/if}
+
+<style>
+	.title {
+		display: inline-block;
+		max-inline-size: var(--size-content-3);
+		font-size: var(--size-4);
+		font-weight: 600;
+		text-transform: capitalize;
+		color: var(--brand);
+		text-wrap: wrap;
+
+		& a {
+			color: inherit;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		&:hover {
+			color: var(--brand);
+			text-decoration: underline;
+			text-underline-offset: 0.2em;
+			text-decoration-style: dashed;
+		}
+	}
+</style>

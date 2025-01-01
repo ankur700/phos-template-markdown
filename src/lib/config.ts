@@ -8,7 +8,7 @@ export const SITE: Site = {
 	title: 'Markdown Template',
 	ogImage: 'astropaper-og.jpg',
 	lightAndDarkMode: true,
-	postPerPage: 6
+	postPerPage: 6,
 };
 
 export const LOCALE = {

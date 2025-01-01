@@ -1,8 +1,8 @@
 import { json } from '@sveltejs/kit';
-import type { Post, Tags } from '$lib/types';
+import type { Post } from '$lib/types';
 
 async function getTags() {
-  const tags: Tags = {};
+  const tags: string[] = [];
   let posts: Post[] = [];
   const paths = import.meta.glob('/src/posts/*.md', { eager: true });
 
@@ -13,7 +13,7 @@ async function getTags() {
     if (file && typeof file === 'object' && 'metadata' in file && slug) {
       const metadata = file.metadata as Omit<Post, 'slug'>;
       const post = { ...metadata, slug } satisfies Post;
-      if(post.published){
+      if(!post.draft){
         posts.push(post);
       }
     }
@@ -26,10 +26,8 @@ async function getTags() {
   posts.forEach((post) => {
     post.tags.forEach((tag) => {
       // if tags does not have the tag, add it as a key and push the post in the value array
-      if (!tags[tag]) {
-        tags[tag] = [post];
-      }else {
-        tags[tag].push(post);
+      if (!tags.find((t) => t === tag)) {
+        tags.push(tag);
       }
     });
   });

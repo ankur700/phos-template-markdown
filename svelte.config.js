@@ -5,6 +5,11 @@ import { createHighlighter } from 'shiki';
 import remarkToc from 'remark-toc';
 import rehypeSlug from 'rehype-slug';
 
+const highlighter = await createHighlighter({
+	themes: ['poimandres'],
+	langs: ['javascript', 'typescript', 'powershell', 'bash']
+});
+
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
 	extensions: ['.md'],
@@ -13,11 +18,7 @@ const mdsvexOptions = {
 	},
 	highlight: {
 		highlighter: async (code, lang = 'text') => {
-			const highlighter = await createHighlighter({
-				themes: ['poimandres'],
-				langs: ['javascript', 'typescript']
-			});
-			await highlighter.loadLanguage('javascript', 'typescript');
+			await highlighter.loadLanguage('javascript', 'typescript', 'powershell', 'bash');
 			const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: 'poimandres' }));
 			return `{@html \`${html}\` }`;
 		}

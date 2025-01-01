@@ -1,17 +1,11 @@
 import { error, type LoadEvent } from '@sveltejs/kit';
-import type { Post } from '$lib/types';
 
-export async function load({ params }: LoadEvent) {
+import type { PageLoad } from './$types';
+
+export const load: PageLoad = async ({ fetch, params }: LoadEvent) => {
 	try {
-    let posts: Post[] = [];
-		const response = await fetch('/api/tags');
-		await response.json().then((tags) => {
-      if (typeof params.slug === 'string') {
-        posts = tags[params.slug];
-      }
-    });
-
-		return { posts: posts };
+		const posts = await fetch(`/api/posts?tag=${params.slug}`);
+		return { posts: await posts.json() };
 	} catch (e) {
 		console.error(e);
 		error(404, `Could not find ${params.slug}`);
