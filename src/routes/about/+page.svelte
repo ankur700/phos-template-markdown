@@ -75,7 +75,6 @@
 
 <style>
 	p {
-		padding-inline: var(--size-3);
 		padding-block: var(--size-6);
 		color: var(--text-color);
 	}

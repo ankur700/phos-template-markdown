@@ -38,10 +38,10 @@
 			height: var(--size-5);
       color: var(--text-2);
 
-			&:hover {
+			/* &:hover {
 				transform: rotate(15deg);
         color: var(--brand);
-			}
+			} */
 		}
 	}
 	.centered {

@@ -4,6 +4,7 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { createHighlighter } from 'shiki';
 import remarkToc from 'remark-toc';
 import rehypeSlug from 'rehype-slug';
+import readingTime from 'mdsvex-reading-time';
 
 const highlighter = await createHighlighter({
 	themes: ['poimandres'],
@@ -23,7 +24,7 @@ const mdsvexOptions = {
 			return `{@html \`${html}\` }`;
 		}
 	},
-	remarkPlugins: [[remarkToc, { tight: true }]],
+	remarkPlugins: [[remarkToc, { tight: true }], readingTime],
 	rehypePlugins: [rehypeSlug]
 };
 
@@ -34,7 +35,19 @@ const config = {
 	preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
 	kit: {
 		adapter: adapter(),
-	}
+		// prerender: {
+		// 	entries: [
+		// 		'*',
+		// 		'/api/posts/*',
+		// 		'/blog/category/*',
+		// 		'/blog/category/*/page/*',
+		// 		'/blog/category/page/',
+		// 		'/blog/category/page/*',
+		// 		'/blog/page/',
+		// 		'/blog/page/*',
+		// 	]
+		// }
+	},
 };
 
 export default config;

@@ -8,8 +8,8 @@ export type Post = {
 	featured?: boolean;
 	cover: string;
 	ogImage?: string;
-	pubDatetime: string;
-	modDatetime: string;
+	publishedDate: string;
+	modifiedDate: string;
 	draft: boolean;
 	canonicalUrl: string;
 	readingTime: string;
@@ -25,7 +25,7 @@ export type Site = {
 	title: string;
 	ogImage?: string;
 	lightAndDarkMode: boolean;
-	postPerPage: number;
+	postsPerPage: number;
 };
 
 export type SocialObjects = {
@@ -34,3 +34,19 @@ export type SocialObjects = {
 	active: boolean;
 	linkTitle: string;
 }[];
+
+export type FetchOptions = {
+	page?: number;
+	limit?: number;
+	category?: string;
+	featured?: boolean;
+	query?: string;
+}
+
+export interface PaginatedResponse {
+	posts: Post[];
+	total: number;
+	page: number;
+	limit: number;
+	totalPages: number;
+}

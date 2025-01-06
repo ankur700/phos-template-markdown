@@ -1,20 +1,60 @@
 <script lang="ts">
 	import Toggle from '$lib/components/toggle.svelte';
 	import { LOGO_IMAGE, SITE } from '$lib/config';
-	import LinkButton from './LinkButton.svelte';
 	import { Search } from 'lucide-svelte';
 	import { Rss } from 'lucide-svelte';
+	import { NavItems } from '$lib/config';
+	import { onMount } from 'svelte';
+	import { Menu, X } from 'lucide-svelte';
+	// import { fly, fade } from 'svelte/transition';
+	// import { bounceIn, elasticIn } from 'svelte/easing';
 
 	interface Props {
-		activeNav?: 'posts' | 'tags' | 'about' | 'search' | 'rss';
+		activeNav?: 'posts' | 'tags' | 'about' | 'search' | 'rss' | '';
 	}
 
-	const { activeNav } = $props();
+	let { activeNav } = $props();
+	let mobileMenu: boolean = $state(false);
+
+	let previousScrollPosition: number = $state(0);
+	let showSearchInput: boolean = $state(false);
+
+	onMount(() => {
+		handleScroll();
+	});
+
+	function handleScroll() {
+		window.addEventListener('scroll', () => {
+			let currentScrollPosition = window.scrollY;
+			const header = document.getElementById('myHeader');
+
+			if (currentScrollPosition < previousScrollPosition) {
+				header?.classList.remove('hidden');
+			} else {
+				header?.classList.add('hidden');
+			}
+
+			previousScrollPosition = currentScrollPosition;
+		});
+	}
 </script>
 
-<header class="header">
+<header class={previousScrollPosition > 0 ? 'header hidden' : 'header'} id="myHeader">
 	<a id="skip-to-content" href="#main-content">Skip to content</a>
 	<div class="top-nav-wrap">
+		<button
+			class="hamburger-menu focus-outline"
+			aria-label="Open Menu"
+			aria-expanded="false"
+			aria-controls="menu-items"
+			onclick={() => (mobileMenu = !mobileMenu)}
+		>
+			{#if mobileMenu}
+				<X />
+			{:else}
+				<Menu />
+			{/if}
+		</button>
 		<a href="/" class="logo">
 			{#if LOGO_IMAGE.enable}
 				<img
@@ -27,75 +67,84 @@
 				{SITE.title}
 			{/if}
 		</a>
+
+		{#if mobileMenu}
+			<nav id="nav-menu" class="mobile-menu">
+				<ul id="menu-items" class="nav-items">
+					{#each NavItems as navItem}
+						<li class="links">
+							<a
+								href={navItem.route}
+								class={activeNav === navItem.route.replace('/', '') ? 'active' : ''}
+							>
+								{navItem.title}
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</nav>
+		{/if}
+
 		<nav id="nav-menu" class="desktop-menu">
-			<button
-				class="hamburger-menu focus-outline"
-				aria-label="Open Menu"
-				aria-expanded="false"
-				aria-controls="menu-items"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="1.5"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					class="menu-icon"
-				>
-					<line x1="7" y1="12" x2="21" y2="12" class="line"></line>
-					<line x1="3" y1="6" x2="21" y2="6" class="line"></line>
-					<line x1="12" y1="18" x2="21" y2="18" class="line"></line>
-					<line x1="18" y1="6" x2="6" y2="18" class="close"></line>
-					<line x1="6" y1="6" x2="18" y2="18" class="close"></line>
-				</svg>
-			</button>
 			<ul id="menu-items" class="nav-items">
-				<li class="links">
-					<a href="/posts" class={activeNav === 'posts' ? 'active' : ''}> Posts </a>
-				</li>
-				<li class="links">
-					<a href="/tags" class={activeNav === 'tags' ? 'active' : ''}> Tags </a>
-				</li>
-				<li class="links">
-					<a href="/about" class={activeNav === 'about' ? 'active' : ''}> About </a>
-				</li>
+				{#each NavItems as navItem}
+					<li class="links">
+						<a
+							href={navItem.route}
+							class={activeNav === navItem.route.replace('/', '') ? 'active' : ''}
+						>
+							{navItem.title}
+						</a>
+					</li>
+				{/each}
 			</ul>
 		</nav>
 		<div class="nav-end">
-			<a
-				href="/search"
-				class={`${activeNav === 'search' ? 'active' : ''}`}
-				role="button"
+			<button
+				class={`${activeNav === 'search' ? 'active handdrawn__button' : 'handdrawn__button'}`}
 				title="Search"
+				onclick={() => (showSearchInput = !showSearchInput)}
 			>
 				<Search style="width: var(--size-4); height: var(--size-4);" />
 				<span class="sr-only">Search</span>
-			</a>
+			</button>
 			<a role="button" href="/rss.xml"
 				><Rss style="width: var(--size-4); height: var(--size-4);" /></a
 			>
 			{#if SITE.lightAndDarkMode}
 				<Toggle />
 			{/if}
+			{#if showSearchInput}
+				<form action="/search" class="search__form">
+					<input type="text" class="search__input" name="query" placeholder="search posts" />
+				</form>
+			{/if}
 		</div>
 	</div>
 </header>
 
 <style>
+	.hidden {
+		display: none;
+		animation: var(--animation-fade-out) forwards;
+	}
+
 	.header {
+		isolation: isolate;
+		z-index: var(--layer-important);
 		background-color: var(--color-background);
 		color: var(--color-text);
-		position: sticky;
-		isolation: isolate;
 		width: 100%;
-		top: 0;
 		background-color: hsl(var(--color-gray-12-hsl) / 60%);
 		backdrop-filter: blur(10px);
-		z-index: 1000;
+		position: fixed;
+		top: 0;
+		/* opacity: 1; */
+		animation:
+			var(--animation-fade-in) forwards,
+			var(--animation-slide-in-down);
+		animation-timing-function: var(--ease-spring-3);
+		animation-duration: 1s;
 
 		#skip-to-content {
 			position: absolute;
@@ -113,6 +162,9 @@
 			display: flex;
 			justify-content: space-between;
 			padding-inline: var(--size-4);
+			padding-block: var(--size-7);
+			position: relative;
+
 			align-items: center;
 			width: var(--width-medium);
 			margin-inline: auto;
@@ -131,28 +183,22 @@
 				display: none;
 			}
 
-			@media (max-width: 768px) {
-				.hamburger-menu {
-					display: block;
-				}
-			}
 			.desktop-menu {
-				padding-block: var(--size-7);
-
-				@media (min-width: 768px) {
-					display: flex;
-					justify-content: space-between;
-				}
+				display: flex;
+				justify-content: space-between;
 
 				.nav-items {
 					display: flex;
-					gap: var(--size-3);
+					gap: var(--size-2);
 
 					.links {
+						a {
+							padding: var(--size-1) var(--size-2);
+						}
 						.active {
-							color: inherit;
+							color: var(--brand);
 							text-decoration: underline;
-							/* text-decoration-color: var(--brand); */
+							text-decoration-color: var(--brand);
 							text-underline-offset: 0.2em;
 							text-decoration-style: wavy;
 						}
@@ -168,13 +214,79 @@
 				display: flex;
 				gap: var(--size-3);
 				align-items: center;
+				position: relative;
 
 				.active {
 					color: var(--brand);
 				}
 
+				.search__form {
+					position: absolute;
+					right: 0;
+					top: 3.5rem;
+					background: var(--surface-3);
+					padding: var(--size-4);
+					box-shadow: var(--shadow-1);
+					animation:
+						var(--animation-fade-in) forwards,
+						var(--animation-slide-in-down);
+					animation-timing-function: var(--ease-spring-3);
+					animation-duration: 1s;
+
+					&::before {
+						content: '';
+						position: absolute;
+						border-bottom: 15px solid var(--surface-3);
+						border-left: 15px solid transparent;
+						border-right: 15px solid transparent;
+						top: 0;
+						left: 62%;
+						margin-top: -14px;
+					}
+				}
+
+				.search__input {
+					padding-inline: var(--size-4);
+					padding-block: var(--size-2);
+					background: var(--surface-2);
+					color: var(--brand);
+				}
+
 				@media (max-width: 768px) {
 					display: none;
+				}
+			}
+		}
+		@media (max-width: 768px) {
+			.top-nav-wrap {
+				width: 100%;
+				justify-content: flex-start;
+				gap: var(--size-4);
+				.hamburger-menu {
+					display: block;
+				}
+				.desktop-menu {
+					display: none;
+				}
+				.mobile-menu {
+					position: absolute;
+					top: 5rem;
+					left: 1rem;
+					padding: var(--size-5);
+
+					width: var(--size-content-1);
+					background: var(--surface-2);
+					animation:
+						var(--animation-fade-in) forwards,
+						var(--animation-slide-in-right);
+					animation-timing-function: var(--ease-spring-3);
+					animation-duration: 1s;
+					border-radius: var(--radius-2);
+
+					.nav-items {
+						display: grid;
+					gap: var(--size-4);
+					}
 				}
 			}
 		}

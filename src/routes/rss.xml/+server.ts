@@ -1,9 +1,11 @@
 import { SITE } from '$lib/config';
-import type { Post } from '$lib/types';
+import type { PaginatedResponse } from '$lib/types';
+
+export const prerender = true;
 
 export async function GET({ fetch }) {
 	const response = await fetch('api/posts');
-	const posts: Post[] = await response.json();
+	const { posts }: PaginatedResponse = await response.json();
 
 	const headers = { 'Content-Type': 'application/xml' };
 
@@ -22,7 +24,7 @@ export async function GET({ fetch }) {
 							<description>${post.description}</description>
 							<link>${SITE.website}/${post.slug}</link>
 							<guid isPermaLink="true">${SITE.website}/${post.slug}</guid>
-							<pubDate>${new Date(post.pubDatetime).toUTCString()}</pubDate>
+							<pubDate>${new Date(post.publishedDate).toUTCString()}</pubDate>
 						</item>
 					`
 					)

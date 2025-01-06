@@ -6,7 +6,6 @@
 	import Spacer from '$lib/components/Spacer.svelte';
 	import { Rss } from 'lucide-svelte';
 	import type { Post } from '$lib/types';
-	import { onMount } from 'svelte';
 	import Card from '$lib/components/card.svelte';
 	import { ArrowRight } from 'lucide-svelte';
 
@@ -15,13 +14,22 @@
 	let featuredPosts: Post[] = $state([]);
 	let recentPosts: Post[] = $state([]);
 
-	onMount(async () => {
-		const res = await fetch(`/api/posts?page=1&limit=${SITE.postPerPage}`);
-		const featuredPostsData = await fetch(`/api/posts?page=1&limit=3&featured=true`);
+	$effect(() => {
+		getFeaturedPosts();
+		getRecentPosts();
+	})
+
+	async function getFeaturedPosts() {
+		const res = await fetch(`/api/posts?page=1&limit=3&featured=true`);
+		const featuredPostsData = await res.json();
+		featuredPosts = featuredPostsData.posts;
+	}
+
+	async function getRecentPosts() {
+		const res = await fetch(`/api/posts?page=1&limit=${SITE.postsPerPage}`);
 		const recentPostsData = await res.json();
-		recentPosts = recentPostsData.posts;
-		featuredPosts = await featuredPostsData.json();
-	});
+		recentPosts = recentPostsData.posts.slice(0, 3);
+	}
 </script>
 
 <PageWrapper>
@@ -64,7 +72,7 @@
 
 			<div class="list">
 				{#each featuredPosts as post}
-					<Card href={`/posts/${post.slug}`} {post} showDate={false} secHeading={false} />
+					<Card {post} showDate={false} />
 				{/each}
 			</div>
 		</section>
@@ -76,16 +84,16 @@
 		<h2 class="section-header">Recent Posts</h2>
 		<div class=" list">
 			{#each recentPosts as post}
-				<Card href={`/posts/${post.slug}`} {post} showDate={false} secHeading={false} />
+				<Card {post} showDate={false} />
 			{/each}
 		</div>
 		<div class="all-posts-btn-wrapper">
-			<button>
-				<LinkButton href="/posts">
+			<LinkButton href="/blog">
+				<button>
 					All Posts
 					<ArrowRight style="width: var(--size-4); height: var(--size-4);" />
+				</button>
 				</LinkButton>
-			</button>
 		</div>
 	</section>
 </PageWrapper>
@@ -100,7 +108,7 @@
 			margin-bottom: var(--size-4);
 
 			h1 {
-				font-size: var(--size-8);
+				font-size: var(--size-7);
 				font-weight: 700;
 				margin: 0;
 			}

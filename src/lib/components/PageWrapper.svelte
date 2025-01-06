@@ -8,10 +8,8 @@
 
 <style>
 	section {
-		/* padding-inline: var(--size-3); */
-		padding-block: 0 var(--size-8);
 		margin-block: var(--size-6);
 		margin-inline: auto;
-		max-width: var(--width-medium);
+		max-inline-size: var(--size-content-3);
 	}
 </style>

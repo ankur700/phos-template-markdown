@@ -2,28 +2,40 @@
 	import Footer from '$lib/components/footer.svelte';
 	import Header from '$lib/components/header.svelte';
 	import PageTransition from './transition.svelte';
-
+	import Spacer from '$lib/components/Spacer.svelte';
 	import Main from '$lib/components/Main.svelte';
+	import { backToTop } from '$lib/utils';
+	import { ChevronUp } from 'lucide-svelte';
 
 	import '../base.css';
 	import { page } from '$app/state';
 	import { LOCALE, SITE } from '$lib/config';
+
 	const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 	let pageTitle = $derived(
 		page.url.pathname.split('/').length > 2 ? null : page.url.pathname.split('/')[1]
 	);
-	let pageDescription = $derived(
-		page.url.pathname.replace('/', '') === 'posts'
-			? 'All the articles published in the blog.'
-			: page.url.pathname.replace('/', '') === 'tags'
-				? 'All the tags used in the blog.'
-				: page.url.pathname.replace('/', '') === 'search'
-					? 'Search for articles in the blog.'
-					: null
-	);
 
-	let { children, data } = $props();
+
+
+
+
+	const { children, data } = $props();
+	let showBackToTopButton: boolean = $state(false);
+
+	function scrollListener() {
+		if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
+			showBackToTopButton = true;
+		} else {
+			showBackToTopButton = false;
+		}
+	}
+
+	$effect(() => {
+		window.addEventListener('scroll', scrollListener);
+		return () => window.removeEventListener('scroll', scrollListener);
+	});
 </script>
 
 <svelte:head>
@@ -55,11 +67,38 @@
 
 <Header activeNav={page.url.pathname.replace('/', '')} />
 
-<Main {pageTitle} {pageDescription}>
+<Spacer space="10" />
+
+<Main {pageTitle}>
 	<PageTransition url={data.url}>
 		{@render children?.()}
 	</PageTransition>
 </Main>
 
 <Footer />
+{#if showBackToTopButton}
+	<button id="back-to-top" class="handdrawn__button" onclick={backToTop}>
+		<ChevronUp />
+		<span>Back to Top</span>
+	</button>
+{/if}
 
+<style>
+	button {
+		position: fixed;
+		z-index: var(--layer-important);
+		bottom: 5rem;
+		right: 3rem;
+		animation:
+			var(--animation-fade-in) forwards,
+			var(--animation-slide-in-up);
+		animation-timing-function: var(--ease-spring-3);
+		animation-duration: 1s;
+		color: var(--color-text-1);
+
+		&:hover {
+			opacity: 0.8;
+			color: var(--brand);
+		}
+	}
+</style>

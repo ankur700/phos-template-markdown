@@ -7,7 +7,7 @@
 
 <PageWrapper>
 	<div class="posts">
-		{#each data.posts as post}
+		{#each data.posts.posts as post}
 			<Card {post} />
 		{/each}
 		</div>

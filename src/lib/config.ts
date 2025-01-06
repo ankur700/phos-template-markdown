@@ -8,7 +8,7 @@ export const SITE: Site = {
 	title: 'Markdown Template',
 	ogImage: 'astropaper-og.jpg',
 	lightAndDarkMode: true,
-	postPerPage: 6,
+	postsPerPage: 5,
 };
 
 export const LOCALE = {
@@ -133,3 +133,18 @@ export const SOCIALS: SocialObjects = [
 		active: false
 	}
 ];
+
+export const NavItems = [
+	{
+		title: 'Blog',
+		route: '/blog'
+	},
+	{
+	 title: 'Categories',
+	 route: '/blog/categories'
+ },
+	 {
+		title: 'About',
+		route: '/about'
+	},
+]

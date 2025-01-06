@@ -1,19 +1,40 @@
 <script lang="ts">
 	import Breadcrumbs from '$lib/components/breadcrumbs.svelte';
+	import type { Snippet } from 'svelte';
+	import { page } from '$app/state';
 
-	let { pageTitle = null, pageDescription = null, children } = $props();
+	interface Props {
+		pageTitle: string | null;
+		children: Snippet;
+	}
+
+	let pageName = $derived(page.url.pathname.replace('/', ''));
+
+	let { pageTitle = null, children }: Props = $props();
 </script>
 
 <main id="main-content">
 	<!-- <Spacer space="10" /> -->
-	{#if pageTitle !== ''}
-		<Breadcrumbs />
-	{/if}
-	{#if pageTitle}
-		<h1>{pageTitle}</h1>
-	{/if}
-	{#if pageDescription}
-		<p>{pageDescription}</p>
+	{#if !page.error}
+		{#if pageTitle !== ''}
+			<Breadcrumbs />
+		{/if}
+		{#if pageTitle}
+			<h1>{pageTitle}</h1>
+		{/if}
+		{#if pageName === 'blog'}
+			<p>{'All the articles published in the blog.'}</p>
+		{:else if pageName === 'categories'}
+			<p>{'All the tags used in the blog.'}</p>
+		{:else if pageName === 'search'}
+			<p>
+				{`Results for search query: `}
+				<span class="search__query">
+					{page.url.searchParams.get('query')}
+				</span>
+				{' in the blog.'}
+			</p>
+		{/if}
 	{/if}
 	{@render children?.()}
 </main>
@@ -22,8 +43,8 @@
 	#main-content {
 		margin-inline: auto;
 		width: 100%;
-		min-height: calc(100vh - 6rem);
-		max-inline-size: var(--width-medium);
+		min-height: calc(100svh - 6rem);
+		max-inline-size: var(--size-content-3);
 		padding-block: var(--size-6) var(--size-4);
 		padding-inline: var(--size-4);
 
@@ -35,6 +56,13 @@
 		p {
 			margin-block: var(--size-1) var(--size-3);
 			font-style: italic;
+
+			span {
+				background: var(--surface-accent);
+				padding-inline: var(--size-2);
+				padding-block: var(--size-1);
+				color: var(--text-accent);
+			}
 		}
 	}
 </style>

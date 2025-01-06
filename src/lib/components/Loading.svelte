@@ -4,7 +4,7 @@
 	.loader {
 		width: fit-content;
 		font-weight: bold;
-		font-family: monospace;
+		font-family: var(--font-monospace-code);
 		font-size: 30px;
 		color: var(--text-1);
 		background: linear-gradient(90deg, var(--brand) calc(50% + 0.5ch), var(--text-2) 0)

@@ -10,6 +10,6 @@ export async function load({ params }) {
 		};
 	} catch(e) {
 		console.error(e);
-		error(404, `Could not find ${params.slug}`);
+		error(404, `Could not find post with slug ${params.slug}`);
 	}
 }

@@ -1,34 +1,44 @@
 <script lang="ts">
 	import FormatedDateTime from '$lib/components/FormatedDateTime.svelte';
-	import { CalendarDays } from 'lucide-svelte';
+	import { CalendarDays, Clock } from 'lucide-svelte';
 	let { pubDatetime, modDatetime, readingTime = '', size = 'sm', className = '' } = $props();
 </script>
 
 <div class={`date ${className}`}>
-	<CalendarDays style="height: var(--size-4); height: var(--size-4);" />
+	<div>
+		{#if modDatetime}
+			<span class={`italic ${size === 'sm' ? 'text-sm' : 'text-base'}`}> Updated: </span>
+		{:else}
+			<span class="sr-only">Published:</span>
+		{/if}
+		<span class={`italic ${size === 'sm' ? 'text-sm' : 'text-base'}`}>
+			<FormatedDateTime {pubDatetime} {modDatetime} />
+		</span>
+	</div>
 
-	{#if modDatetime}
-		<span class={`italic ${size === 'sm' ? 'text-sm' : 'text-base'}`}> Updated: </span>
-	{:else}
-		<span class="sr-only">Published:</span>
-	{/if}
-	<span class={`italic ${size === 'sm' ? 'text-sm' : 'text-base'}`}>
-		<FormatedDateTime {pubDatetime} {modDatetime} />
-	</span>
-
-	<span class="reading-time"> {readingTime}</span>
+	<div>
+		<span class="reading-time">{readingTime}</span>
+	</div>
 </div>
 
 <style>
 	.date {
 		display: flex;
+		align-items: center;
 		padding: var(--size-2);
+		font-size: var(--size-2);
 		background-color: hsl(var(--color-background / 40%));
-		gap: var(--size-2);
+		gap: var(--size-4);
 		color: var(--text-2);
 
+		div {
+			display: flex;
+			align-items: center;
+			gap: var(--size-1);
+		}
+
 		span {
-			font-size: var(--size-fluid-1);
+			font-size: var(--size-3);
 		}
 
 		.reading-time {
