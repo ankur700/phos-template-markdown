@@ -6,7 +6,7 @@
 	import Spacer from '$lib/components/Spacer.svelte';
 	import { Rss } from 'lucide-svelte';
 	import type { Post } from '$lib/types';
-	import Card from '$lib/components/card.svelte';
+	import SimplePost from '$lib/components/Post.svelte';
 	import { ArrowRight } from 'lucide-svelte';
 
 	const socialCount = SOCIALS.filter((social) => social.active).length;
@@ -72,7 +72,7 @@
 
 			<div class="list">
 				{#each featuredPosts as post}
-					<Card {post} showDate={false} />
+					<SimplePost {post} showDate={false} />
 				{/each}
 			</div>
 		</section>
@@ -84,7 +84,7 @@
 		<h2 class="section-header">Recent Posts</h2>
 		<div class=" list">
 			{#each recentPosts as post}
-				<Card {post} showDate={false} />
+				<SimplePost {post} showDate={false} />
 			{/each}
 		</div>
 		<div class="all-posts-btn-wrapper">

@@ -101,7 +101,7 @@
 		</nav>
 		<div class="nav-end">
 			<button
-				class={`${activeNav === 'search' ? 'active handdrawn__button' : 'handdrawn__button'}`}
+				class={`${activeNav === 'search' ? 'active handdrawn__button' : 'inactive'}`}
 				title="Search"
 				onclick={() => (showSearchInput = !showSearchInput)}
 			>
@@ -162,7 +162,7 @@
 			display: flex;
 			justify-content: space-between;
 			padding-inline: var(--size-4);
-			padding-block: var(--size-7);
+			padding-block: var(--size-6);
 			position: relative;
 
 			align-items: center;
@@ -189,17 +189,14 @@
 
 				.nav-items {
 					display: flex;
-					gap: var(--size-2);
+					gap: var(--size-3);
 
 					.links {
-						a {
-							padding: var(--size-1) var(--size-2);
-						}
 						.active {
 							color: var(--brand);
 							text-decoration: underline;
 							text-decoration-color: var(--brand);
-							text-underline-offset: 0.2em;
+							text-underline-offset: 0.4em;
 							text-decoration-style: wavy;
 						}
 
@@ -218,6 +215,12 @@
 
 				.active {
 					color: var(--brand);
+				}
+
+				.inactive {
+					background: transparent;
+					border: none;
+					box-shadow: none;
 				}
 
 				.search__form {
@@ -252,9 +255,9 @@
 					color: var(--brand);
 				}
 
-				@media (max-width: 768px) {
+				/* @media (max-width: 768px) {
 					display: none;
-				}
+				} */
 			}
 		}
 		@media (max-width: 768px) {

@@ -1,7 +1,7 @@
 ---
 title: This is a random title.
 description: This is a random post.
-pubDatetime: 2024-06-04T06:06:31Z
+publishedDate: 2024-06-04T06:06:31Z
 author: Ankur Singh
 draft: true
 featured: false
@@ -9,6 +9,8 @@ tags:
   - sveltekit
   - svelte
 ---
+
+## Table of Contents
 
 ## Svelte
 

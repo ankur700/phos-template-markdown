@@ -6,20 +6,15 @@
 	import Main from '$lib/components/Main.svelte';
 	import { backToTop } from '$lib/utils';
 	import { ChevronUp } from 'lucide-svelte';
-
-	import '../base.css';
 	import { page } from '$app/state';
-	import { LOCALE, SITE } from '$lib/config';
+	import { SITE } from '$lib/config';
+	import '../base.css';
 
 	const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 	let pageTitle = $derived(
 		page.url.pathname.split('/').length > 2 ? null : page.url.pathname.split('/')[1]
 	);
-
-
-
-
 
 	const { children, data } = $props();
 	let showBackToTopButton: boolean = $state(false);
@@ -76,6 +71,7 @@
 </Main>
 
 <Footer />
+
 {#if showBackToTopButton}
 	<button id="back-to-top" class="handdrawn__button" onclick={backToTop}>
 		<ChevronUp />

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { SITE } from '$lib/config.ts';
-	import Card from '$lib/components/card.svelte';
+	import Post from '$lib/components/Post.svelte';
 	import PageWrapper from '$lib/components/PageWrapper.svelte';
 	import Pagination from '$lib/components/Pagination.svelte';
 	import Loading from '$lib/components/Loading.svelte';
@@ -23,7 +23,7 @@
 				<p>No posts found</p>
 			{:else}
 				{#each posts as post}
-					<Card {post} />
+					<Post {post} />
 				{/each}
 			{/if}
 		{/await}

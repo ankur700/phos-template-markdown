@@ -1,7 +1,7 @@
 ---
 title: "Mastering Laravel Development on Windows: A WSL-powered Guide for Speed and Simplicity"
 author: Ankur Singh
-pubDatetime: 2023-04-04T07:18:31Z
+publishedDate: 2023-04-04T07:18:31Z
 featured: true
 draft: false
 tags:
@@ -12,6 +12,8 @@ tags:
   - web development
 description: In this comprehensive guide, we will walk you through the steps to establish a lightning-fast development environment for Laravel on your Windows system using WSL.
 ---
+
+## Table of Contents
 
 Setting up a robust development environment tailored for Laravel on a Windows machine can be a daunting task, especially when aiming for speed and efficiency. However, fear not, as this guide is here to assist you in streamlining the process. By harnessing the power of Windows Subsystem for Linux (WSL), I'll walk you through the steps to establish a swift and seamless Laravel development environment on your Windows system. Whether you're a seasoned developer or just diving into the Laravel framework, this comprehensive tutorial will pave the way for smoother development workflows, allowing you to focus on what truly matters—building exceptional web applications. Let's embark on this journey to harness the full potential of Laravel development on your Windows machine!
 
@@ -57,13 +59,13 @@ sudo apt-get update
 
 Now we are ready to start setting up our Linux development environment. Lets start with installing some useful tools and utilities
 
-**Utilities**
+###Utilities
 
 ```bash
 sudo apt-get install ca-certificates apt-transport-https software-properties-common
 ```
 
-**Tools**
+###Tools
 
 ```bash
 sudo apt install git curl openssl wget micro gnupg2 fzf jq unzip zip
@@ -107,7 +109,7 @@ php -m
 
 ![php modules](/php-modules.jpg)
 
-## Composer
+### Composer
 
 To install composer, execute these commands one by one:
 
@@ -127,13 +129,13 @@ Add composer to PATH
 export PATH="$HOME/.config/composer/vendor/bin:$PATH"
 ```
 
-#### Laravel
+### Laravel
 
 ```bash
 composer global require laravel/installer
 ```
 
-## MYSQL
+### MYSQL
 
 Install mysql and start the service
 
@@ -157,7 +159,7 @@ CREATE USER 'ankur'@'localhost' IDENTIFIED WITH mysql_native_password BY 'mypass
 CREATE DATABASE example
 ```
 
-## NGINX
+### NGINX
 
 ```bash
 sudp apt install nginx
@@ -286,7 +288,7 @@ Find the line which says plugins=(git) and replace that line with plugins=(git z
 source ~/.zshrc
 ```
 
-### [Starship Prompt](https://starship.rs/)
+#### [Starship Prompt](https://starship.rs/)
 
 ```bash
 # Install Starship
@@ -318,7 +320,7 @@ sudo apt install wget fontconfig \
 && cd ~/.local/share/fonts && unzip JetBrainsMono.zip && rm *Windows* && rm JetBrainsMono.zip && fc-cache -fv
 ```
 
-## Links
+## Resources
 
 - [Best practices for setting up a WSL development environment](https://learn.microsoft.com/en-us/windows/wsl/setup/environment#set-up-your-linux-username-and-password)
 - [Valet Linux](https://cpriego.github.io/valet-linux/)

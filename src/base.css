@@ -154,8 +154,8 @@ a:visted {
 
 .handdrawn__button {
 	border: var(--brand) 1px solid;
-		border-radius: var(--radius-drawn-1);
-		background: transparent;
+	border-radius: var(--radius-drawn-1);
+	background: transparent;
 }
 
 .icon-tabler {
@@ -199,7 +199,7 @@ li {
 
 .prose {
 	p {
-		font-size: var(--size-4);
+		/* font-size: var(--size-3); */
 
 		:not(:is(h2, h3, h4, h5, h6) + p) {
 			margin-top: var(--size-7);
@@ -219,7 +219,7 @@ li {
 	}
 
 	:is(ul, ol) {
-		list-style-type: '🔥';
+		list-style-type: '○';
 		padding-left: var(--size-5);
 	}
 
@@ -274,3 +274,4 @@ li {
 	white-space: nowrap;
 	width: 1px;
 }
+

@@ -13,3 +13,5 @@ export const GET = async ({ url }) => {
 	const paginatedPosts = await fetchPosts(options);
 	return json(paginatedPosts);
 }
+
+export const prerender = true;

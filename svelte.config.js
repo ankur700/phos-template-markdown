@@ -1,15 +1,12 @@
 import { mdsvex, escapeSvelte } from 'mdsvex';
 import adapter from '@sveltejs/adapter-auto';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
-import { createHighlighter } from 'shiki';
+import { bundledLanguages, getSingletonHighlighter } from 'shiki';
 import remarkToc from 'remark-toc';
 import rehypeSlug from 'rehype-slug';
 import readingTime from 'mdsvex-reading-time';
 
-const highlighter = await createHighlighter({
-	themes: ['poimandres'],
-	langs: ['javascript', 'typescript', 'powershell', 'bash']
-});
+
 
 /** @type {import('mdsvex').MdsvexOptions} */
 const mdsvexOptions = {
@@ -19,12 +16,15 @@ const mdsvexOptions = {
 	},
 	highlight: {
 		highlighter: async (code, lang = 'text') => {
-			await highlighter.loadLanguage('javascript', 'typescript', 'powershell', 'bash');
+			const highlighter = await getSingletonHighlighter({
+				themes: ['poimandres'],
+				langs: Object.keys(bundledLanguages)
+			});
 			const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: 'poimandres' }));
 			return `{@html \`${html}\` }`;
 		}
 	},
-	remarkPlugins: [[remarkToc, { tight: true }], readingTime],
+	remarkPlugins: [[remarkToc, { tight: true, heading: "Table of Contents" }], readingTime],
 	rehypePlugins: [rehypeSlug]
 };
 
@@ -35,18 +35,6 @@ const config = {
 	preprocess: [vitePreprocess(), mdsvex(mdsvexOptions)],
 	kit: {
 		adapter: adapter(),
-		// prerender: {
-		// 	entries: [
-		// 		'*',
-		// 		'/api/posts/*',
-		// 		'/blog/category/*',
-		// 		'/blog/category/*/page/*',
-		// 		'/blog/category/page/',
-		// 		'/blog/category/page/*',
-		// 		'/blog/page/',
-		// 		'/blog/page/*',
-		// 	]
-		// }
 	},
 };
 

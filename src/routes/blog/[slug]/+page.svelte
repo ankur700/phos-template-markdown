@@ -49,59 +49,66 @@
 	<meta property="twitter:description" content={data.meta.description} />
 </svelte:head>
 
-<article>
-	<hgroup>
-		<h1>{data.meta.title}</h1>
-		<DateTime
-			pubDatetime={data.meta.pubDatetime}
-			modDatetime={data.meta.modDatetime}
-			readingTime={data.meta.readingTime.text}
-		/>
-	</hgroup>
+<div class="wrapper">
+	<article>
+		<hgroup>
+			<h1>{data.meta.title}</h1>
+			<DateTime
+				pubDatetime={data.meta.publishedDate}
+				modDatetime={data.meta.modifiedDate}
+				readingTime={data.meta.readingTime.text}
+			/>
+		</hgroup>
 
-	<div class="prose">
-		<data.content />
-	</div>
-	<div class="tags">
-		{#each data.meta.tags as category}
-			<Tag tag={category} />
-		{/each}
-	</div>
-	<div class="share__links">
-		<ShareLinks />
-	</div>
-</article>
+		<div class="prose">
+			<data.content />
+		</div>
+		<div class="tags">
+			{#each data.meta.tags as category}
+				<Tag tag={category} />
+			{/each}
+		</div>
+		<div class="share__links">
+			<ShareLinks />
+		</div>
+	</article>
+</div>
 
 <style>
-	article {
-		max-inline-size: var(--size-content-3);
-		margin-inline: auto;
-		margin-block: var(--size-7);
+	.wrapper {
+		position: relative;
+		width: 100%;
+		height: 100%;
 
-		h1 {
-			font-size: var(--size-fluid-3);
+		article {
 			max-inline-size: var(--size-content-3);
-			text-transform: capitalize;
-			text-wrap: balance;
-		}
-
-		.prose {
+			margin-inline: auto;
 			margin-block: var(--size-7);
-		}
 
-		.tags {
-			display: flex;
-			gap: var(--size-3);
-			margin-block: 0 var(--size-3);
-		}
+			h1 {
+				/* font-size: var(--size-7); */
+				/* max-inline-size: var(--size-content-3); */
+				text-transform: capitalize;
+			}
 
-		.share__links {
-			width: 100%;
-			max-inline-size: var(--size-content-3);
-			display: flex;
-			align-items: center;
-			justify-content: flex-start;
-			margin-block: var(--size-7);
+			.prose {
+				margin-block: var(--size-7);
+			}
+
+			.tags {
+				display: flex;
+				gap: var(--size-3);
+				margin-block: 0 var(--size-3);
+			}
+
+			.share__links {
+				width: 100%;
+				max-inline-size: var(--size-content-3);
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				margin-block: var(--size-7);
+			}
 		}
 	}
 </style>

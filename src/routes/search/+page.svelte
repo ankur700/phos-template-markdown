@@ -1,7 +1,7 @@
 <script lang="ts">
 	import PageWrapper from '$lib/components/PageWrapper.svelte';
 	import Loading from '$lib/components/Loading.svelte';
-	import Card from '$lib/components/card.svelte';
+	import Post from '$lib/components/Post.svelte';
 
 	let { data } = $props();
 </script>
@@ -11,7 +11,7 @@
 		<Loading />
 	{:then posts}
 		{#each posts as post}
-			<Card {post} />
+			<Post {post} />
 		{/each}
 	{/await}
 </PageWrapper>

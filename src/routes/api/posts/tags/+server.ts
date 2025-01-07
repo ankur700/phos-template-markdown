@@ -21,3 +21,5 @@ export async function GET() {
   const tags = await getTags();
   return json(tags);
 }
+
+export const prerender = true;
