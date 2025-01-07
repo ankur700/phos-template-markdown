@@ -20,7 +20,9 @@
 	let showBackToTopButton: boolean = $state(false);
 
 	function scrollListener() {
-		if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100) {
+		if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100 &&
+			document.documentElement.scrollHeight > window.innerHeight + 100
+		) {
 			showBackToTopButton = true;
 		} else {
 			showBackToTopButton = false;
