@@ -13,7 +13,7 @@ tags:
 
 ## Table of Contents
 
-## Introduction
+## Customize
 
-Customizing this themplate is very easy, just change the config file inside [`src/lib`] folder. You can customize the site name, logo, social icons and navigation through this file. However you need to customize the style from the base.css file in src folder. This template uses [open props](https://open-props.style/) for creating consistent components through expertly created web design tokens.
+Customizing this template is very easy, just change the config file inside [`src/lib`] folder. You can customize the site name, logo, social icons and navigation through this file. However you need to customize the style from the base.css file in src folder. This template uses [open props](https://open-props.style/) for creating consistent components through expertly created web design tokens.
 

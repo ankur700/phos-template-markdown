@@ -1,11 +1,11 @@
 import { dev } from '$app/environment'
 
 export const SITE: Site = {
-	website: dev ? 'http://localhost:5173/' : 'https://yourwebstiedomain.com/', // replace this with your deployed domain
+	website: dev ? 'http://localhost:5173/' : 'https://phos-xi.vercel.app/', // replace this with your deployed domain
 	author: 'Ankur Singh',
 	desc: 'SvelteKit blog template using Markdown.',
 	title: 'Phos',
-	ogImage: 'phos-og.jpg',
+	ogImage: '/phos-template.png',
 	lightAndDarkMode: true,
 	postsPerPage: 5,
 };

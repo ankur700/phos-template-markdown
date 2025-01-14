@@ -1,4 +1,15 @@
-# Usage
+# PHOS
+
+![Phos Template Screenshot](/static/phos-template.png)
+
+A minimal blog template using [sveltekit](https://github.com/ankur700/phos-template-markdown), markdown(MDSVEX) provided in sveltekit and [open-props](https://open-props.style/).
+
+Phos is a minimal, responsive, accessible and SEO-friendly sveltekit blog template. This theme
+follows best practices and provides accessibility out of the box. Light and dark mode are
+supported by default with easy customization options.
+
+
+## Usage
 
 How to use this template to create a minimal blog, powered by [`sveltekit`](https://svelte.dev/docs/kit/introduction).
 

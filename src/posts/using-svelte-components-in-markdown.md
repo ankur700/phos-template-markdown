@@ -16,10 +16,11 @@ tags:
 
 ## Table of Contents
 
-## Introduction
+## Svelte plus Markdown
+
 Using svelte component inside the markdown is very simple and easy because of the MDSVEX. A classic example component is a counter component. Just import the component inside the script tag like you would in svelte and now you can use the component anywhere in the markdown file. The placement of the script tag doesn't matter, you can place them on the top after your frontmatter metadata or right before using the component. I personally prefer them on the top, plus its easier if you have multiple components to import.
 
-## Svelte component
+## The component
 
 This is a svelte component inside a markdown post.
 
