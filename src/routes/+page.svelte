@@ -1,29 +1,12 @@
 <script lang="ts">
 	import PageWrapper from '$lib/components/PageWrapper.svelte';
-	import { SITE } from '$lib';
 	import Spacer from '$lib/components/Spacer.svelte';
 	import SimplePost from '$lib/components/Post.svelte';
 	import { ArrowRight } from 'lucide-svelte';
+	import { page } from '$app/state';
 
-	let featuredPosts: Post[] = $state([]);
-	let recentPosts: Post[] = $state([]);
-
-	$effect(() => {
-		getFeaturedPosts();
-		getRecentPosts();
-	});
-
-	async function getFeaturedPosts() {
-		const res = await fetch(`/api/posts?page=1&limit=3&featured=true`);
-		const featuredPostsData = await res.json();
-		featuredPosts = featuredPostsData.posts;
-	}
-
-	async function getRecentPosts() {
-		const res = await fetch(`/api/posts?page=1&limit=${SITE.postsPerPage}`);
-		const recentPostsData = await res.json();
-		recentPosts = recentPostsData.posts.slice(0, 3);
-	}
+	let featuredPosts: Post[] = $state(page.data.featuredPosts);
+	let recentPosts: Post[] = $state(page.data.recentPosts);
 </script>
 
 <PageWrapper>

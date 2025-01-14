@@ -4,7 +4,7 @@ description: Example post to illustrate how to use svelte component in markdown.
 publishedDate: 2025-01-12T05:06:31Z
 author: Ankur Singh
 draft: false
-featured: false
+featured: true
 tags:
   - sveltekit
   - markdown
