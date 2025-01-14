@@ -13,4 +13,4 @@ export const GET = async ({ url }) => {
 	return json(paginatedPosts);
 }
 
-export const prerender = true;
+// export const prerender = true;
