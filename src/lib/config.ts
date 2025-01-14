@@ -139,8 +139,8 @@ export const NavItems = [
 		route: '/blog'
 	},
 	{
-		title: 'Categories',
-		route: '/blog/categories'
+		title: 'Tags',
+		route: '/tags'
 	},
 	{
 		title: 'About',

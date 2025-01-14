@@ -5,8 +5,8 @@ import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ params }: LoadEvent) => {
 	try {
-		const category = params.slug?.replace('-', " ");
-		const posts = await fetchPosts({ limit: 0, category: category, page: 1, featured: false });
+		const tag = params.slug?.replace('-', " ");
+		const posts = await fetchPosts({ limit: 0, tag: tag, page: 1, featured: false });
 		return { posts };
 	} catch (e) {
 		console.error(e);

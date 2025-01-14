@@ -6,4 +6,4 @@ export const GET = () => {
   return json(Object.keys(posts).length)
 }
 
-export const prerender = true
+// export const prerender = true

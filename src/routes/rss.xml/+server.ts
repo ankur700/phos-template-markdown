@@ -1,9 +1,9 @@
 import { SITE } from '$lib';
 
-export const prerender = true;
+// export const prerender = true;
 
 export async function GET({ fetch }) {
-	const response = await fetch('api/posts');
+	const response = await fetch('api/posts?limit=0');
 	const { posts }: PaginatedResponse = await response.json();
 
 	const headers = { 'Content-Type': 'application/xml' };

@@ -7,7 +7,7 @@
 	};
 
 	let { tag, style = 'link', size = 'normal' }: Props = $props();
-	let href = $derived(`/blog/categories/${tag.replace(' ', '-').toLowerCase()}`);
+	let href = $derived(`/tags/${tag.replace(' ', '-').toLowerCase()}`);
 	let className: string = $derived(
 		style === 'tag' ? `${size} ${style} handdrawn__button` : `${size} ${style}`
 	);

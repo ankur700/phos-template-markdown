@@ -46,7 +46,7 @@ declare global {
 	interface FetchOptions {
 		page?: number;
 		limit?: number;
-		category?: string;
+		tag?: string;
 		featured?: boolean;
 		query?: string;
 	}

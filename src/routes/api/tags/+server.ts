@@ -22,4 +22,4 @@ export async function GET() {
   return json(tags);
 }
 
-export const prerender = true;
+// export const prerender = true;

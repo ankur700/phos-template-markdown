@@ -9,7 +9,7 @@
 
 <svelte:head>
 	<title>{SITE.title + ' | Tags'}</title>
-	<meta property="og:type" content="categories" />
+	<meta property="og:type" content="tags" />
 	<meta property="og:title" content={'Tags'} />
 	<meta name="title" content={'Tags'} />
 	<meta name="description" content={'All the tags used in the blog posts.'} />

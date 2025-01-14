@@ -2,7 +2,7 @@ import { SITE } from '$lib/config'
 import { error } from '@sveltejs/kit';
 
 
-const fetchPosts = async ({ page = 1, limit = SITE.postsPerPage, category = '', featured = false, query = "" }: FetchOptions): Promise<PaginatedResponse> => {
+const fetchPosts = async ({ page = 1, limit = SITE.postsPerPage, tag = '', featured = false, query = "" }: FetchOptions): Promise<PaginatedResponse> => {
   const offset = (page - 1) * limit;
   const posts: Post[] = [];
 
@@ -23,8 +23,8 @@ const fetchPosts = async ({ page = 1, limit = SITE.postsPerPage, category = '', 
 
   let sortedPosts = posts.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
 
-  if (category) {
-    sortedPosts = sortedPosts.filter(post => post.tags.includes(category));
+  if (tag) {
+    sortedPosts = sortedPosts.filter(post => post.tags.includes(tag));
   }
 
   if (featured) {

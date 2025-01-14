@@ -1,11 +1,9 @@
-import { SITE } from '$lib';
 import { error } from '@sveltejs/kit';
 
 
 export async function load({ fetch }) {
-  const baseUrl = SITE.website;
   try {
-    const response = await fetch(baseUrl + 'api/posts/tags');
+    const response = await fetch('api/tags');
     const tags: string[] = await response.json();
     return { tags };
 
