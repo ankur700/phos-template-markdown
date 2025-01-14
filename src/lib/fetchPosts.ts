@@ -1,9 +1,8 @@
 import { SITE } from '$lib/config'
-import type { Post, FetchOptions, PaginatedResponse } from '$lib/types';
 import { error } from '@sveltejs/kit';
 
 
-const fetchPosts = async ({ page = 1, limit = SITE.postsPerPage, category = '', featured = false, query="" }: FetchOptions): Promise<PaginatedResponse> => {
+const fetchPosts = async ({ page = 1, limit = SITE.postsPerPage, category = '', featured = false, query = "" }: FetchOptions): Promise<PaginatedResponse> => {
   const offset = (page - 1) * limit;
   const posts: Post[] = [];
 
@@ -28,11 +27,11 @@ const fetchPosts = async ({ page = 1, limit = SITE.postsPerPage, category = '', 
     sortedPosts = sortedPosts.filter(post => post.tags.includes(category));
   }
 
-  if(featured) {
+  if (featured) {
     sortedPosts = sortedPosts.filter(post => post.featured)
   }
 
-  if(query) {
+  if (query) {
     sortedPosts = sortedPosts.filter(post => post.title.toLowerCase().includes(query));
   }
 
@@ -44,9 +43,9 @@ const fetchPosts = async ({ page = 1, limit = SITE.postsPerPage, category = '', 
     sortedPosts = sortedPosts.slice(0, limit)
   }
 
-  if(sortedPosts.length === 0){
+  if (sortedPosts.length === 0) {
     throw error(404, "No posts found");
-  }else {
+  } else {
     return {
       posts: sortedPosts,
       total: posts.length,

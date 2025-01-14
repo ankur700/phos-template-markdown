@@ -1,9 +1,9 @@
 import { json } from '@sveltejs/kit';
-import fetchPosts from '$lib/fetchPosts';
+import { fetchPosts } from '$lib';
 
 async function getTags() {
   const tags: string[] = [];
-  const { posts } = await fetchPosts({ limit:0 });
+  const { posts } = await fetchPosts({ limit: 0 });
 
   posts.forEach((post) => {
     post.tags.forEach((tag) => {

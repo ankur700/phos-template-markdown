@@ -1,12 +1,11 @@
 import { dev } from '$app/environment'
-import type { Site, SocialObjects } from '$lib/types'
 
 export const SITE: Site = {
 	website: dev ? 'http://localhost:5173/' : 'https://yourwebstiedomain.com/', // replace this with your deployed domain
 	author: 'Ankur Singh',
 	desc: 'SvelteKit blog template using Markdown.',
-	title: 'Markdown Template',
-	ogImage: 'astropaper-og.jpg',
+	title: 'Phos',
+	ogImage: 'phos-og.jpg',
 	lightAndDarkMode: true,
 	postsPerPage: 5,
 };
@@ -26,7 +25,7 @@ export const LOGO_IMAGE = {
 export const SOCIALS: SocialObjects = [
 	{
 		name: 'Github',
-		href: 'https://github.com/username',
+		href: 'https://github.com/ankur700',
 		linkTitle: `${SITE.title} Github Profile`,
 		active: true
 	},
@@ -50,85 +49,85 @@ export const SOCIALS: SocialObjects = [
 	},
 	{
 		name: 'Twitch',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://twitch.com/username',
 		linkTitle: `${SITE.title} on Twitch`,
 		active: false
 	},
 	{
 		name: 'YouTube',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://youtube.com/@username',
 		linkTitle: `${SITE.title} on YouTube`,
 		active: false
 	},
 	{
 		name: 'WhatsApp',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://whatsapp.com/username',
 		linkTitle: `${SITE.title} on WhatsApp`,
 		active: false
 	},
 	{
 		name: 'Snapchat',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://snapchat.com/username',
 		linkTitle: `${SITE.title} on Snapchat`,
 		active: false
 	},
 	{
 		name: 'Pinterest',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://pinterest.com/username',
 		linkTitle: `${SITE.title} on Pinterest`,
 		active: false
 	},
 	{
 		name: 'TikTok',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://tiktok.com/username',
 		linkTitle: `${SITE.title} on TikTok`,
 		active: false
 	},
 	{
 		name: 'CodePen',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://codepen.com/usrname',
 		linkTitle: `${SITE.title} on CodePen`,
 		active: false
 	},
 	{
 		name: 'Discord',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://discord.com/username',
 		linkTitle: `${SITE.title} on Discord`,
 		active: false
 	},
 	{
 		name: 'GitLab',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://gitlab.com/username',
 		linkTitle: `${SITE.title} on GitLab`,
 		active: false
 	},
 	{
 		name: 'Reddit',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://reddit.com/username',
 		linkTitle: `${SITE.title} on Reddit`,
 		active: false
 	},
 	{
 		name: 'Skype',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://skype.com/username',
 		linkTitle: `${SITE.title} on Skype`,
 		active: false
 	},
 	{
 		name: 'Steam',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://steam.com/username',
 		linkTitle: `${SITE.title} on Steam`,
 		active: false
 	},
 	{
 		name: 'Telegram',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://telegram.com/username',
 		linkTitle: `${SITE.title} on Telegram`,
 		active: false
 	},
 	{
 		name: 'Mastodon',
-		href: 'https://github.com/ankur700/phos-template-markdown',
+		href: 'https://mastodon.com/username',
 		linkTitle: `${SITE.title} on Mastodon`,
 		active: false
 	}
@@ -140,10 +139,10 @@ export const NavItems = [
 		route: '/blog'
 	},
 	{
-	 title: 'Categories',
-	 route: '/blog/categories'
- },
-	 {
+		title: 'Categories',
+		route: '/blog/categories'
+	},
+	{
 		title: 'About',
 		route: '/about'
 	},

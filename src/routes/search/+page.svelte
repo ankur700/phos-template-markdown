@@ -1,17 +1,17 @@
 <script lang="ts">
 	import PageWrapper from '$lib/components/PageWrapper.svelte';
-	import Loading from '$lib/components/Loading.svelte';
 	import Post from '$lib/components/Post.svelte';
+	import type { PageData } from './$types';
 
-	let { data } = $props();
+	let { data }: { data: PageData } = $props();
 </script>
 
 <PageWrapper>
-	{#await data.posts}
-		<Loading />
-	{:then posts}
-		{#each posts as post}
+	{#if data.posts}
+		{#each data.posts as post}
 			<Post {post} />
 		{/each}
-	{/await}
+	{:else}
+		<p>No posts found.</p>
+	{/if}
 </PageWrapper>

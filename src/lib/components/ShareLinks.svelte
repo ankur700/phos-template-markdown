@@ -1,5 +1,4 @@
 <script lang="ts">
-	import LinkButton from '$lib/components/LinkButton.svelte';
 	import socialIcons from '$lib/socialIcons';
 	import { page } from '$app/state';
 

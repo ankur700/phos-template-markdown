@@ -50,3 +50,20 @@ export function backToTop() {
 	document.body.scrollTop = 0; // For Safari
 	document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+
+export function getTableOfContents() {
+	const toc = document.getElementById('table-of-contents') as HTMLElement;
+	const details = document.createElement('details');
+	const summary = document.createElement('summary');
+	const panel = toc?.nextElementSibling as HTMLElement;
+	const tocHeading = toc?.innerText ?? '';
+	toc?.remove();
+
+	panel?.parentNode?.insertBefore(summary, panel);
+	summary?.parentNode?.insertBefore(details, summary);
+	if (panel) {
+		details.appendChild(summary);
+		details.appendChild(panel);
+		summary.innerText = tocHeading;
+	}
+}

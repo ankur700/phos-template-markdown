@@ -1,8 +1,9 @@
 <script lang="ts">
-	import Post from '$lib/components/Post.svelte'
-	import PageWrapper from '$lib/components/PageWrapper.svelte'
+	import Post from '$lib/components/Post.svelte';
+	import PageWrapper from '$lib/components/PageWrapper.svelte';
+	import type { PageData } from './$types';
 
-	let { data } = $props();
+	let { data }: { data: PageData } = $props();
 </script>
 
 <PageWrapper>
@@ -10,8 +11,8 @@
 		{#each data.posts.posts as post}
 			<Post {post} />
 		{/each}
-		</div>
-	</PageWrapper>
+	</div>
+</PageWrapper>
 
 <style>
 	.posts {

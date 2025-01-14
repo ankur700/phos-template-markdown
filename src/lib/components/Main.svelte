@@ -4,17 +4,16 @@
 	import { page } from '$app/state';
 
 	interface Props {
-		pageTitle: string | null;
+		pageTitle?: string;
 		children: Snippet;
 	}
 
 	let pageName = $derived(page.url.pathname.replace('/', ''));
 
-	let { pageTitle = null, children }: Props = $props();
+	let { pageTitle, children }: Props = $props();
 </script>
 
 <main id="main-content">
-	<!-- <Spacer space="10" /> -->
 	{#if !page.error}
 		{#if pageTitle !== ''}
 			<Breadcrumbs />

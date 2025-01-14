@@ -22,7 +22,7 @@
 		border-top: 1px solid var(--border);
 
 		p {
-			color: var(--text-2);
+			color: var(--text-primary);
 			font-size: var(--size-3);
 		}
 	}

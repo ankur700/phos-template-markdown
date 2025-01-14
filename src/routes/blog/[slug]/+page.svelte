@@ -1,16 +1,17 @@
 <script lang="ts">
-	import { SITE } from '$lib/config';
+	import { SITE } from '$lib';
 	import Tag from '$lib/components/Tag.svelte';
 	import DateTime from '$lib/components/dateTime.svelte';
-	import ShareLinks from '$lib/ShareLinks.svelte';
-	import { onMount } from 'svelte';
+	import ShareLinks from '$lib/components/ShareLinks.svelte';
 	import type { PageData } from './$types';
-	import { attachCopyButtons } from '$lib/utils';
+	import { onMount } from 'svelte';
+	import { attachCopyButtons, getTableOfContents } from '$lib';
 
 	let { data }: { data: PageData } = $props();
 
 	onMount(() => {
 		attachCopyButtons();
+		getTableOfContents();
 	});
 </script>
 
@@ -53,6 +54,11 @@
 	<article>
 		<hgroup>
 			<h1>{data.meta.title}</h1>
+
+			{#if data.meta.cover}
+				<img class="cover-image" src={data.meta.cover} alt={data.meta.title} />
+			{/if}
+
 			<DateTime
 				pubDatetime={data.meta.publishedDate}
 				modDatetime={data.meta.modifiedDate}
@@ -86,9 +92,12 @@
 			margin-block: var(--size-7);
 
 			h1 {
-				/* font-size: var(--size-7); */
-				/* max-inline-size: var(--size-content-3); */
 				text-transform: capitalize;
+			}
+
+			.cover-image {
+				width: 100%;
+				aspect-ratio: var(--ratio-widescreen);
 			}
 
 			.prose {
@@ -99,6 +108,7 @@
 				display: flex;
 				gap: var(--size-3);
 				margin-block: 0 var(--size-3);
+				flex-wrap: wrap;
 			}
 
 			.share__links {

@@ -4,23 +4,31 @@
 	import PageTransition from './transition.svelte';
 	import Spacer from '$lib/components/Spacer.svelte';
 	import Main from '$lib/components/Main.svelte';
-	import { backToTop } from '$lib/utils';
+	import { backToTop } from '$lib';
 	import { ChevronUp } from 'lucide-svelte';
 	import { page } from '$app/state';
-	import { SITE } from '$lib/config';
+	import { SITE } from '$lib';
 	import '../base.css';
+	import type { PageData } from './$types';
+	import type { Snippet } from 'svelte';
 
 	const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 
 	let pageTitle = $derived(
-		page.url.pathname.split('/').length > 2 ? null : page.url.pathname.split('/')[1]
+		page.url.pathname.split('/').length > 2 ? undefined : page.url.pathname.split('/')[1]
 	);
 
-	const { children, data } = $props();
+	type Props = {
+		children: Snippet;
+		data: PageData;
+	};
+
+	const { children, data }: Props = $props();
 	let showBackToTopButton: boolean = $state(false);
 
 	function scrollListener() {
-		if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100 &&
+		if (
+			window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 100 &&
 			document.documentElement.scrollHeight > window.innerHeight + 100
 		) {
 			showBackToTopButton = true;

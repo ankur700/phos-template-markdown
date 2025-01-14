@@ -12,21 +12,18 @@
 
 <nav class="breadcrumb" aria-label="breadcrumb">
 	{#if breadcrumbList.length >= 3}
-		<div class=" back-button mx-auto flex w-full max-w-3xl justify-start px-2">
-			<button
-				class="focus-outline mb-2 mt-8 flex hover:opacity-75"
-				onclick={() => history.back()}
-			>
+		<div class="back-button">
+			<button class="" onclick={() => history.back()}>
 				<ChevronLeft />
-			<span>Go back</span>
+				<span>Go back</span>
 			</button>
 		</div>
-		{:else}
-	<ul>
-		<li>
-			<a href="/">Home</a>
-			<span aria-hidden="true">&raquo;</span>
-		</li>
+	{:else}
+		<ul>
+			<li>
+				<a href="/">Home</a>
+				<span aria-hidden="true">&raquo;</span>
+			</li>
 			{#each breadcrumbList as breadcrumb, index}
 				{#if index + 1 === breadcrumbList.length}
 					<li>
@@ -50,7 +47,7 @@
 				{/if}
 			{/each}
 		</ul>
-		{/if}
+	{/if}
 </nav>
 
 <style>
@@ -64,24 +61,23 @@
 			display: inline;
 			a {
 				text-decoration: none;
-				color: var(--text-2);
+				color: var(--text-secondary);
 				text-transform: capitalize;
 			}
 			span {
-				color: var(--text-2);
+				color: var(--text-secondary);
 			}
 			span[aria-hidden='true'] {
 				margin-inline: var(--size-1);
 			}
 		}
 		li:not(:last-child) a:hover {
-			color: var(--text-1);
+			color: var(--text-primary);
 		}
 
 		.back-button {
 			display: flex;
 			justify-content: flex-start;
-			/* padding-inline: var(--size-2); */
 			width: 100%;
 			max-inline-size: var(--size-content-3);
 			margin-inline: auto;
@@ -90,12 +86,12 @@
 				display: flex;
 				background: transparent;
 				border: none;
-				color: var(--text-2);
+				color: var(--text-secondary);
+				text-shadow: none;
 				padding: 0;
 				cursor: pointer;
 				box-shadow: none;
 			}
-
 		}
 	}
 </style>

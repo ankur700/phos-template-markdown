@@ -1,17 +1,11 @@
 <script lang="ts">
 	import Toggle from '$lib/components/toggle.svelte';
-	import { LOGO_IMAGE, SITE } from '$lib/config';
+	import { LOGO_IMAGE, SITE } from '$lib';
 	import { Search } from 'lucide-svelte';
 	import { Rss } from 'lucide-svelte';
 	import { NavItems } from '$lib/config';
 	import { onMount } from 'svelte';
 	import { Menu, X } from 'lucide-svelte';
-	// import { fly, fade } from 'svelte/transition';
-	// import { bounceIn, elasticIn } from 'svelte/easing';
-
-	interface Props {
-		activeNav?: 'posts' | 'tags' | 'about' | 'search' | 'rss' | '';
-	}
 
 	let { activeNav } = $props();
 	let mobileMenu: boolean = $state(false);
@@ -39,11 +33,14 @@
 	}
 </script>
 
-<header class={previousScrollPosition > 0 ? 'header hidden' : 'header'} id="myHeader">
+<header
+	class={previousScrollPosition > 0 ? 'header glass-effect hidden' : 'header glass-effect'}
+	id="myHeader"
+>
 	<a id="skip-to-content" href="#main-content">Skip to content</a>
 	<div class="top-nav-wrap">
 		<button
-			class="hamburger-menu focus-outline"
+			class="hamburger-menu handdrawn__button"
 			aria-label="Open Menu"
 			aria-expanded="false"
 			aria-controls="menu-items"
@@ -58,7 +55,7 @@
 		<a href="/" class="logo">
 			{#if LOGO_IMAGE.enable}
 				<img
-					src={`/assets/${LOGO_IMAGE.svg ? 'logo.svg' : 'logo.png'}`}
+					src={`/${LOGO_IMAGE.svg ? 'logo.svg' : 'logo.png'}`}
 					alt={SITE.title}
 					width={LOGO_IMAGE.width}
 					height={LOGO_IMAGE.height}
@@ -132,14 +129,10 @@
 	.header {
 		isolation: isolate;
 		z-index: var(--layer-important);
-		background-color: var(--color-background);
-		color: var(--color-text);
+		color: var(--text-primary);
 		width: 100%;
-		background-color: hsl(var(--color-gray-12-hsl) / 60%);
-		backdrop-filter: blur(10px);
 		position: fixed;
 		top: 0;
-		/* opacity: 1; */
 		animation:
 			var(--animation-fade-in) forwards,
 			var(--animation-slide-in-down);
@@ -164,7 +157,7 @@
 			padding-inline: var(--size-4);
 			padding-block: var(--size-6);
 			position: relative;
-
+			box-shadow: var(--shadow-2);
 			align-items: center;
 			width: var(--width-medium);
 			margin-inline: auto;
@@ -193,18 +186,21 @@
 
 					.links {
 						.active {
-							color: var(--brand);
+							color: var(--accent);
 							text-decoration: underline;
-							text-decoration-color: var(--brand);
+							text-decoration-color: var(--accent);
 							text-underline-offset: 0.4em;
 							text-decoration-style: wavy;
 						}
 
 						&:hover {
-							color: var(--brand);
+							color: var(--accent);
 						}
 					}
 				}
+			}
+			.mobile-menu {
+				display: none;
 			}
 
 			.nav-end {
@@ -214,7 +210,7 @@
 				position: relative;
 
 				.active {
-					color: var(--brand);
+					color: var(--accent);
 				}
 
 				.inactive {
@@ -227,7 +223,7 @@
 					position: absolute;
 					right: 0;
 					top: 3.5rem;
-					background: var(--surface-3);
+					background: var(--surface-primary);
 					padding: var(--size-4);
 					box-shadow: var(--shadow-1);
 					animation:
@@ -239,7 +235,7 @@
 					&::before {
 						content: '';
 						position: absolute;
-						border-bottom: 15px solid var(--surface-3);
+						border-bottom: 15px solid var(--surface-primary);
 						border-left: 15px solid transparent;
 						border-right: 15px solid transparent;
 						top: 0;
@@ -251,13 +247,9 @@
 				.search__input {
 					padding-inline: var(--size-4);
 					padding-block: var(--size-2);
-					background: var(--surface-2);
-					color: var(--brand);
+					background: var(--surface);
+					color: var(--accent);
 				}
-
-				/* @media (max-width: 768px) {
-					display: none;
-				} */
 			}
 		}
 		@media (max-width: 768px) {
@@ -265,20 +257,24 @@
 				width: 100%;
 				justify-content: flex-start;
 				gap: var(--size-4);
+
 				.hamburger-menu {
 					display: block;
 				}
+
 				.desktop-menu {
 					display: none;
 				}
+
 				.mobile-menu {
+					display: block;
 					position: absolute;
 					top: 5rem;
 					left: 1rem;
 					padding: var(--size-5);
-
+					background: var(--surface-primary);
+					z-index: var(--layer-important);
 					width: var(--size-content-1);
-					background: var(--surface-2);
 					animation:
 						var(--animation-fade-in) forwards,
 						var(--animation-slide-in-right);
@@ -288,7 +284,7 @@
 
 					.nav-items {
 						display: grid;
-					gap: var(--size-4);
+						gap: var(--size-4);
 					}
 				}
 			}

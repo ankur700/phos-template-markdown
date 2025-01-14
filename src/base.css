@@ -2,126 +2,112 @@
 @import 'open-props/colors-hsl';
 @import 'open-props/normalize';
 @import 'open-props/buttons';
-/* @import '@fontsource/atkinson-hyperlegible';
-@import '@fontsource/jetbrains-mono'; */
 
 html {
-	/* font */
-	/* --font-system-ui: 'Atkinson Hyperlegible', sans-serif;
-	--font-monospace-code: 'JetBrains Mono', monospace; */
 
 	--width-full: 100vw;
 	--width-medium: 48rem;
 	--width-narrow: 30rem;
 
 	/* dark */
-	--brand-dark: var(--jungle-5);
-	--text-1-dark: var(--gray-3);
-	--text-2-dark: var(--gray-5);
-	--surface-1-dark: var(--stone-12);
+	--accent-dark: var(--jungle-5);
+	--text-primary-dark: var(--gray-3);
+	--text-secondary-dark: var(--gray-5);
+	--surface-dark: var(--gray-11);
 	--surface-accent-dark: hsl(var(--lime-5-hsl) / 20%);
 	--text-accent-dark: var(--lime-4);
-	--surface-2-dark: var(--stone-11);
-	--surface-3-dark: var(--stone-10);
-	--surface-4-dark: var(--stone-9);
-	--background-dark: var(--gray-11);
+	--surface-primary-dark: var(--gray-12);
+	--surface-secondary-dark: var(--gray-11);
 	--border-dark: var(--gray-9);
+	--bg-blur-dark: hsl(var(--gray-12-hsl) / 5%);
 
 	/* light */
-	--brand-light: var(--jungle-8);
-	--text-1-light: var(--gray-8);
-	--text-2-light: var(--gray-6);
-	--surface-1-light: var(--stone-0);
+	--accent-light: var(--jungle-8);
+	--text-primary-light: var(--gray-8);
+	--text-secondary-light: var(--gray-6);
+	--surface-light: var(--gray-0);
 	--surface-accent-light: hsl(var(--lime-3-hsl) / 20%);
 	--text-accent-light: var(--lime-8);
-	--surface-2-light: var(--stone-1);
-	--surface-3-light: var(--stone-2);
-	--surface-4-light: var(--stone-3);
-	--background-light: var(--gray-1);
+	--surface-primary-light: var(--gray-1);
+	--surface-secondary-light: var(--gray-2);
 	--border-light: var(--gray-4);
+	--bg-blur-light: hsl(var(--gray-1-hsl) / 5%);
 }
 
 :root {
 	color-scheme: dark;
 
-	--brand: var(--brand-dark);
-	--text-1: var(--text-1-dark);
-	--text-2: var(--text-2-dark);
-	--surface-1: var(--surface-1-dark);
+	--accent: var(--accent-dark);
+	--text-primary: var(--text-primary-dark);
+	--text-secondary: var(--text-secondary-dark);
+	--surface: var(--surface-dark);
 	--surface-accent: var(--surface-accent-dark);
 	--text-accent: var(--text-accent-dark);
-	--surface-2: var(--surface-2-dark);
-	--surface-3: var(--surface-3-dark);
-	--surface-4: var(--surface-4-dark);
-	--background: var(--background-dark);
+	--surface-primary: var(--surface-primary-dark);
+	--surface-secondary: var(--surface-secondary-dark);
 	--border: var(--border-dark);
+	--bg-blur: var(--bg-blur-dark);
 }
 
 @media (prefers-color-scheme: light) {
 	:root {
 		color-scheme: light;
 
-		--brand: var(--brand-light);
-		--text-1: var(--text-1-light);
-		--text-2: var(--text-2-light);
-		--surface-1: var(--surface-1-light);
+		--accent: var(--accent-light);
+		--text-primary: var(--text-primary-light);
+		--text-secondary: var(--text-secondary-light);
+		--surface: var(--surface-light);
 		--surface-accent: var(--surface-accent-light);
 		--text-accent: var(--text-accent-light);
-		--surface-2: var(--surface-2-light);
-		--surface-3: var(--surface-3-light);
-		--surface-4: var(--surface-4-light);
-		--background: var(--background-light);
+		--surface-primary: var(--surface-primary-light);
+		--surface-secondary: var(--surface-secondary-light);
 		--border: var(--border-light);
+		--bg-blur: var(--bg-blur-light);
 	}
 }
 
 [color-scheme='dark'] {
 	color-scheme: dark;
 
-	--brand: var(--brand-dark);
-	--text-1: var(--text-1-dark);
-	--text-2: var(--text-2-dark);
+	--accent: var(--accent-dark);
+	--text-primary: var(--text-primary-dark);
+	--text-secondary: var(--text-secondary-dark);
+	--surface: var(--surface-dark);
 	--surface-accent: var(--surface-accent-dark);
 	--text-accent: var(--text-accent-dark);
-	--surface-1: var(--surface-1-dark);
-	--surface-2: var(--surface-2-dark);
-	--surface-3: var(--surface-3-dark);
-	--surface-4: var(--surface-4-dark);
-	--background: var(--background-dark);
+	--surface-primary: var(--surface-primary-dark);
+	--surface-secondary: var(--surface-secondary-dark);
 	--border: var(--border-dark);
+	--bg-blur: var(--bg-blur-dark);
 }
 
 [color-scheme='light'] {
 	color-scheme: light;
 
-	--brand: var(--brand-light);
-	--text-1: var(--text-1-light);
-	--text-2: var(--text-2-light);
-	--surface-1: var(--surface-1-light);
+	--accent: var(--accent-light);
+	--text-primary: var(--text-primary-light);
+	--text-secondary: var(--text-secondary-light);
+	--surface: var(--surface-light);
 	--surface-accent: var(--surface-accent-light);
 	--text-accent: var(--text-accent-light);
-	--surface-2: var(--surface-2-light);
-	--surface-3: var(--surface-3-light);
-	--surface-4: var(--surface-4-light);
-	--background: var(--background-light);
+	--surface-primary: var(--surface-primary-light);
+	--surface-secondary: var(--surface-secondary-light);
 	--border: var(--border-light);
+	--bg-blur: var(--bg-blur-light);
 }
 
-html,
-body {
-	height: 100svh;
-}
+
 
 html {
-	color: var(--text-1);
-	accent-color: var(--link);
+	color: var(--text-primary);
+	accent-color: var(--accent);
 	background-attachment: fixed;
-	background-color: var(--background);
+	background-color: var(--surface);
 }
 
 body {
+	height: 100svh;
 	font-family: var(--font-classical-humanist);
-	position: relative;
 }
 
 img {
@@ -140,7 +126,7 @@ a {
 }
 
 a:hover {
-	color: var(--brand);
+	color: var(--accent);
 }
 
 a:visted {
@@ -153,7 +139,7 @@ a:visted {
 }
 
 .handdrawn__button {
-	border: var(--brand) 1px solid;
+	border: var(--accent) 1px solid;
 	border-radius: var(--radius-drawn-1);
 	background: transparent;
 }
@@ -161,39 +147,55 @@ a:visted {
 .icon-tabler {
 	display: inline-block;
 	fill: none;
-	stroke: currentColor;
+	stroke: var(--text-secondary);
+	stroke-width: 2px;
 	stroke-linecap: round;
 	height: var(--size-5);
 	width: var(--size-5);
 
 	&:hover {
-		stroke: var(--brand);
+		stroke: var(--accent);
+		fill: transparent;
 		transform: rotate(15deg);
 	}
+}
+
+.glass-effect {
+	background-color: var(--bg-blur);
+}
+
+@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+	.glass-effect {
+		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px);
+		background-color: var(--bg-blur);
+	}
+}
+
+.link__button {
+	border: none;
+	box-shadow: none;
+	background-color: transparent;
+	text-shadow: none;
 }
 
 li {
 	padding-inline-start: 0;
 }
 
-.surface-1 {
-	background-color: var(--surface-1);
-	color: var(--text-2);
+.surface {
+	background-color: var(--surface);
+	color: var(--text-secondary);
 }
 
-.surface-2 {
-	background-color: var(--surface-2);
-	color: var(--text-2);
+.surface-primary {
+	background-color: var(--surface-primary);
+	color: var(--text-secondary);
 }
 
-.surface-3 {
-	background-color: var(--surface-3);
-	color: var(--text-1);
-}
-
-.surface-4 {
-	background-color: var(--surface-4);
-	color: var(--text-1);
+.surface-scondary {
+	background-color: var(--surface-secondary);
+	color: var(--text-primary);
 }
 
 
@@ -205,7 +207,7 @@ li {
 			margin-top: var(--size-7);
 		}
 
-		margin-bottom: var(--size-4);
+		margin-block: var(--size-4);
 
 		/* ignore paragraph tag around images */
 		&:has(img) {
@@ -217,6 +219,17 @@ li {
 		margin-top: var(--size-8);
 		margin-bottom: var(--size-3);
 	}
+
+	:is(details, summary) {
+		background-color: var(--surface-primary);
+
+		ul {
+			font-size: var(--size-3);
+		}
+	}
+
+
+
 
 	:is(ul, ol) {
 		list-style-type: '○';
@@ -244,6 +257,7 @@ li {
 			padding: var(--size-1) var(--size-2);
 			border-radius: var(--radius-2);
 			background-color: var(--surface-2);
+			box-shadow: none;
 			color: var(--text-2);
 			cursor: pointer;
 			font-size: 0.75rem;
@@ -251,17 +265,16 @@ li {
 	}
 
 	a {
-		background: linear-gradient(0deg, var(--brand), var(--brand)) no-repeat right bottom / 0 var(--bg-h);
+		background: linear-gradient(0deg, var(--accent), var(--accent)) no-repeat right bottom / 0 var(--size-1);
 		transition: background-size 350ms;
 		padding-bottom: var(--size-1);
-		--bg-h: var(--size-1);
-		color: var(--brand);
+		color: var(--accent);
 	}
 
 	a:where(:hover, :focus-visible) {
-		background-size: 100% var(--bg-h);
+		background-size: 100% var(--size-1);
 		background-position-x: left;
-		color: var(--text-2);
+		color: var(--text-secondary);
 	}
 }
 
@@ -274,4 +287,3 @@ li {
 	white-space: nowrap;
 	width: 1px;
 }
-

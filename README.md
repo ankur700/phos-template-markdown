@@ -1,22 +1,22 @@
-# sv
+# Usage
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+How to use this template to create a minimal blog, powered by [`sveltekit`](https://svelte.dev/docs/kit/introduction).
 
-## Creating a project
+## Cloning the repo
 
-If you're seeing this, you've probably already done this step. Congrats!
+Clone this repo using the following command.
 
 ```bash
-# create a new project in the current directory
-npx sv create
+# clone this repo in the current directory
+git clone https://github.com/ankur700/phos-template-markdown
 
-# create a new project in my-app
-npx sv create my-app
+# cd into the newly create project
+cd phos-template-markdown
 ```
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've cloned the project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
 ```bash
 npm run dev

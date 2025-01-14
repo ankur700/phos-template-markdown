@@ -1,5 +1,4 @@
-import { SITE } from '$lib/config';
-import type { PaginatedResponse } from '$lib/types';
+import { SITE } from '$lib';
 
 export const prerender = true;
 
@@ -17,8 +16,8 @@ export async function GET({ fetch }) {
 				<link>${SITE.website}</link>
 				<atom:link href="${SITE.website}/rss.xml" rel="self" type="application/rss+xml"/>
 				${posts
-					.map(
-						(post) => `
+			.map(
+				(post) => `
 						<item>
 							<title>${post.title}</title>
 							<description>${post.description}</description>
@@ -27,8 +26,8 @@ export async function GET({ fetch }) {
 							<pubDate>${new Date(post.publishedDate).toUTCString()}</pubDate>
 						</item>
 					`
-					)
-					.join('')}
+			)
+			.join('')}
 			</channel>
 		</rss>
 	`.trim();

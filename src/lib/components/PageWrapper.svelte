@@ -1,13 +1,20 @@
 <script lang="ts">
-	let { className = "", children } = $props();
+	import type { Snippet } from 'svelte';
+
+	type Props = {
+		className?: string;
+		children: Snippet;
+	};
+
+	let { className, children }: Props = $props();
 </script>
 
-<section class={className}>
+<div class={className}>
 	{@render children?.()}
-</section>
+</div>
 
 <style>
-	section {
+	div {
 		margin-block: var(--size-6);
 		margin-inline: auto;
 		max-inline-size: var(--size-content-3);

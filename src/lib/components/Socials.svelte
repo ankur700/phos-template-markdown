@@ -36,12 +36,7 @@
 			display: flex;
 			width: var(--size-5);
 			height: var(--size-5);
-      color: var(--text-2);
-
-			/* &:hover {
-				transform: rotate(15deg);
-        color: var(--brand);
-			} */
+      color: var(--text-secondary);
 		}
 	}
 	.centered {

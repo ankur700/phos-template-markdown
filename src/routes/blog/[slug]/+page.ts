@@ -9,7 +9,7 @@ export async function load({ params }) {
 			content: post.default,
 			meta: post.metadata,
 		};
-	} catch(e) {
+	} catch (e) {
 		console.error(e);
 		error(404, `Could not find post with slug ${params.slug}`);
 	}

@@ -2,9 +2,9 @@
 	import { SITE } from '$lib/config.js';
 	import Tag from '$lib/components/Tag.svelte';
 	import PageWrapper from '$lib/components/PageWrapper.svelte';
+	import type { PageData } from './$types';
 
-	let { data } = $props();
-	console.log(data);
+	let { data }: { data: PageData } = $props();
 </script>
 
 <svelte:head>
@@ -37,8 +37,8 @@
 
 <style>
 	.tags {
-		display: flex;
-		flex-wrap: wrap;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 		gap: var(--size-3);
 	}
 </style>

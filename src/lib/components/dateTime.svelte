@@ -17,7 +17,7 @@
 	</div>
 
 	<div>
-		<span class="reading-time">{readingTime}</span>
+		<span class="italic reading-time">{readingTime}</span>
 	</div>
 </div>
 
@@ -27,9 +27,14 @@
 		align-items: center;
 		padding: var(--size-2);
 		font-size: var(--size-2);
+		font-family: var(--font-monospace-code);
 		background-color: hsl(var(--color-background / 40%));
 		gap: var(--size-4);
-		color: var(--text-2);
+		color: var(--text-secondary);
+
+		.italic {
+			font-style: italic;
+		}
 
 		div {
 			display: flex;
